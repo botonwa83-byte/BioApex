@@ -127,7 +127,7 @@
 		EC88064C5F002B5C047271F4 /* WeaponModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponModels.swift; sourceTree = "<group>"; };
 		F037B111DCF7743C63E9CDAC /* KnowledgePointDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgePointDetailView.swift; sourceTree = "<group>"; };
 		F1F48AC4109836B285E8CE05 /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
-		F1F9D434945B01F50F6A5EA4 /* BioApex.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BioApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F9D434945B01F50F6A5EA4 /* BioApex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BioApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F49DDAAD8A989F6509DA250F /* ChallengeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeData.swift; sourceTree = "<group>"; };
 		F66E30AA6A2256CAFF6C7642 /* SeeLifeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeLifeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -370,8 +370,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 0C2FC8B219372B32148FB22E /* Build configuration list for PBXProject "BioApex" */;
 			developmentRegion = en;
@@ -565,6 +563,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z7F8BY55DS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BioApex;
@@ -673,6 +672,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z7F8BY55DS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BioApex;

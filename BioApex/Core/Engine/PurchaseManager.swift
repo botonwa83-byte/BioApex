@@ -20,6 +20,35 @@ final class PurchaseManager: ObservableObject {
     static let freeDetectiveCount = 2  // 遗传神探前 2 案免费
     static let freeChallengeCount = 2  // 破题之眼前 2 题免费试看
 
+    // MARK: 解锁价值统计（数据驱动付费墙：真实数字随内容增长自动更新，无需手改文案）
+
+    struct UnlockSummary {
+        let premiumPoints: Int     // 必修2 + 选必 考点数
+        let premiumQuestions: Int  // 付费考点配套精讲题/采分点
+        let processes: Int         // 过程剧场总数
+        let pedigrees: Int         // 遗传神探（系谱破案）
+        let duels: Int             // 遗传秒算（双解对决）
+        let loops: Int             // 稳态回路
+        let inquiries: Int         // 探究实验
+        let challenges: Int        // 破题之眼（压轴巧解）
+    }
+
+    /// 解锁后可获得的内容统计；付费墙直接读取，内容增量后自动反映。
+    static var unlockSummary: UnlockSummary {
+        let premiumPoints = SyllabusData.all.filter { !$0.module.isFree }
+        let premiumIds = Set(premiumPoints.map { $0.id })
+        let premiumQuestions = QuestionData.all.filter { premiumIds.contains($0.kpId) }.count
+        return UnlockSummary(
+            premiumPoints: premiumPoints.count,
+            premiumQuestions: premiumQuestions,
+            processes: ProcessData.all.count,
+            pedigrees: GeneticsData.pedigrees.count,
+            duels: GeneticsData.duels.count,
+            loops: HomeostasisData.all.count,
+            inquiries: InquiryData.all.count,
+            challenges: ChallengeData.all.count)
+    }
+
     @Published private(set) var isUnlocked = false
     @Published private(set) var product: Product?
     @Published private(set) var isPurchasing = false

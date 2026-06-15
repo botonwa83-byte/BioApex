@@ -7,30 +7,33 @@ struct PaywallView: View {
     @Environment(\.dismiss) private var dismiss
 
     private var priceLabel: String { purchase.product?.displayPrice ?? "¥22" }
+    private let summary = PurchaseManager.unlockSummary
 
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
                 heroArea
 
+                statStrip.padding(.horizontal, 24).padding(.top, 18)
+
                 VStack(alignment: .leading, spacing: 14) {
                     benefitRow(icon: "square.grid.2x2.fill", color: .bioGreen,
-                               title: "解锁必修2 + 选必全部考点",
-                               desc: "遗传进化、稳态调节、生物与环境、生物技术——高考主战场全开")
+                               title: "解锁必修2 + 选必全部 \(summary.premiumPoints) 个考点",
+                               desc: "遗传进化、稳态调节、生物与环境、生物技术——含 \(summary.premiumQuestions) 道精讲题与采分点")
                     benefitRow(icon: "play.square.stack.fill", color: .bioTeal,
-                               title: "解锁全部过程剧场",
-                               desc: "减数分裂、转录翻译…拖时间轴看清每一步,断点填空验掌握")
+                               title: "解锁全部 \(summary.processes) 个过程剧场",
+                               desc: "减数分裂、转录翻译、兴奋传导…拖时间轴看清每一步,断点填空验掌握")
                     benefitRow(icon: "magnifyingglass", color: .bioPurple,
-                               title: "遗传神探 + 秒算全开",
-                               desc: "系谱破案练识局,概率秒算双解对决,压轴题不再丢分")
+                               title: "遗传神探 \(summary.pedigrees) 例 + 秒算 \(summary.duels) 题全开",
+                               desc: "系谱破案练识局、概率秒算双解对决,外加破题之眼 \(summary.challenges) 道压轴巧解,压轴题不再丢分")
                     benefitRow(icon: "testtube.2", color: .bioBlue,
-                               title: "探究实验台 + 稳态回路",
+                               title: "探究实验台 \(summary.inquiries) 例 + 稳态回路 \(summary.loops) 条",
                                desc: "实验设计成游戏,负反馈可拨动——高考实验题专项突破")
                     benefitRow(icon: "infinity", color: .bioGold,
-                               title: "一次买断,永久使用",
-                               desc: "无订阅、无续费,内容持续更新;支持换机恢复购买")
+                               title: "一次买断,永久使用 · 可家庭共享",
+                               desc: "无订阅、无续费,内容持续更新;支持换机恢复购买,一人购买全家(最多 6 人)共享")
                 }
-                .padding(.horizontal, 24).padding(.top, 28).padding(.bottom, 20)
+                .padding(.horizontal, 24).padding(.top, 22).padding(.bottom, 20)
 
                 Divider().padding(.horizontal, 24)
 
@@ -65,6 +68,33 @@ struct PaywallView: View {
         .onChange(of: purchase.isUnlocked) { unlocked in
             if unlocked { dismiss() }
         }
+    }
+
+    private var statStrip: some View {
+        HStack(spacing: 0) {
+            statItem(number: "\(summary.premiumPoints)", label: "付费考点")
+            statDivider
+            statItem(number: "\(summary.processes)", label: "过程剧场")
+            statDivider
+            statItem(number: "\(summary.pedigrees + summary.duels)", label: "遗传专题")
+            statDivider
+            statItem(number: "\(summary.inquiries + summary.loops)", label: "实验·回路")
+        }
+        .padding(.vertical, 14)
+        .frame(maxWidth: .infinity)
+        .background(RoundedRectangle(cornerRadius: 14).fill(Color.bioGreen.opacity(0.08)))
+    }
+
+    private func statItem(number: String, label: String) -> some View {
+        VStack(spacing: 3) {
+            Text(number).font(.system(size: 22, weight: .black, design: .rounded)).foregroundColor(.bioGreen)
+            Text(label).font(.system(size: 11)).foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private var statDivider: some View {
+        Rectangle().fill(Color.secondary.opacity(0.15)).frame(width: 1, height: 28)
     }
 
     private var heroArea: some View {

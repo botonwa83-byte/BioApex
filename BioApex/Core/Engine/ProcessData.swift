@@ -7,6 +7,7 @@ import Foundation
 enum ProcessData {
     static let all: [ProcessScene] = [
         photosynthesis, respiration, mitosis, osmosis, meiosis, translation,
+        nerveImpulse, secretion, humoralImmunity,
     ]
 
     static func scene(id: String) -> ProcessScene? { all.first { $0.id == id } }
@@ -109,5 +110,61 @@ enum ProcessData {
             ProcessStage(id: "tr3", name: "翻译", detail: "核糖体沿 mRNA 移动，tRNA 按密码子搬运氨基酸，脱水缩合成肽链。",
                          consumes: "mRNA、tRNA、氨基酸", produces: "蛋白质(肽链)",
                          quiz: ProcessQuiz(prompt: "决定氨基酸的密码子位于？", options: ["mRNA上", "tRNA上", "DNA上"], answerIndex: 0, explanation: "密码子在mRNA上，每3个碱基决定一个氨基酸；tRNA上是反密码子。")),
+        ])
+
+    // MARK: 兴奋的产生与传导（付费）
+    private static let nerveImpulse = ProcessScene(
+        id: "ps_nerve", title: "兴奋的产生与传导", subtitle: "静息电位 → 动作电位 → 突触传递",
+        module: .homeostasis, location: "神经纤维 + 突触",
+        examHook: "静息电位由 K⁺ 外流维持；动作电位由 Na⁺ 内流形成；兴奋在突触处只能单向传递。",
+        stages: [
+            ProcessStage(id: "n1", name: "静息电位", detail: "未受刺激时，K⁺ 外流，膜电位表现为外正内负。",
+                         produces: "外正内负的静息电位",
+                         quiz: ProcessQuiz(prompt: "静息电位主要由哪种离子外流维持？", options: ["K⁺", "Na⁺", "Ca²⁺"], answerIndex: 0, explanation: "静息时 K⁺ 外流，使膜电位外正内负。")),
+            ProcessStage(id: "n2", name: "动作电位", detail: "受刺激处 Na⁺ 内流，该处膜电位变为外负内正（兴奋）。",
+                         consumes: "适宜刺激", produces: "外负内正的动作电位",
+                         quiz: ProcessQuiz(prompt: "兴奋时膜变为外负内正，原因是？", options: ["Na⁺ 内流", "K⁺ 外流", "Cl⁻ 内流"], answerIndex: 0, explanation: "受刺激时 Na⁺ 内流，形成动作电位。")),
+            ProcessStage(id: "n3", name: "兴奋在纤维上传导", detail: "兴奋部位与未兴奋部位间形成局部电流，使兴奋沿神经纤维双向传导。",
+                         produces: "局部电流（神经冲动）"),
+            ProcessStage(id: "n4", name: "突触传递", detail: "兴奋传到突触前膜，突触小泡释放神经递质，经突触间隙作用于突触后膜受体。",
+                         consumes: "神经递质、ATP", produces: "突触后膜电位变化",
+                         quiz: ProcessQuiz(prompt: "兴奋在突触处的传递方向是？", options: ["只能单向（前膜→后膜）", "可以双向", "无方向"], answerIndex: 0, explanation: "递质只能由突触前膜释放、作用于后膜，故只能单向传递。")),
+        ])
+
+    // MARK: 分泌蛋白的合成与运输（付费）
+    private static let secretion = ProcessScene(
+        id: "ps_secretion", title: "分泌蛋白的合成与运输", subtitle: "核糖体 → 内质网 → 高尔基体 → 细胞膜",
+        module: .molecule, location: "多种细胞器协作（生物膜系统）",
+        examHook: "分泌蛋白经核糖体→内质网→高尔基体→细胞膜；线粒体全程供能、膜间靠囊泡运输。",
+        stages: [
+            ProcessStage(id: "se1", name: "核糖体合成肽链", detail: "核糖体以氨基酸为原料，脱水缩合合成肽链。",
+                         consumes: "氨基酸", produces: "肽链",
+                         quiz: ProcessQuiz(prompt: "分泌蛋白合成肽链的场所是？", options: ["核糖体", "内质网", "高尔基体"], answerIndex: 0, explanation: "蛋白质（肽链）在核糖体上合成。")),
+            ProcessStage(id: "se2", name: "内质网加工", detail: "肽链进入内质网初步折叠加工，由囊泡包裹运向高尔基体。",
+                         consumes: "肽链", produces: "囊泡（内含初步加工的蛋白）"),
+            ProcessStage(id: "se3", name: "高尔基体加工分类", detail: "高尔基体进一步加工、分类、包装，形成成熟的分泌小泡。",
+                         produces: "成熟分泌蛋白（分泌小泡）"),
+            ProcessStage(id: "se4", name: "胞吐分泌出细胞", detail: "分泌小泡与细胞膜融合，以胞吐方式排出细胞外，线粒体全程供能。",
+                         consumes: "ATP（线粒体供能）", produces: "分泌到细胞外的蛋白",
+                         quiz: ProcessQuiz(prompt: "整个过程提供能量的细胞器是？", options: ["线粒体", "核糖体", "高尔基体"], answerIndex: 0, explanation: "线粒体通过有氧呼吸为合成、加工、运输和分泌提供能量。")),
+        ])
+
+    // MARK: 体液免疫（付费）
+    private static let humoralImmunity = ProcessScene(
+        id: "ps_humoral", title: "体液免疫", subtitle: "B 细胞 → 浆细胞 → 抗体",
+        module: .homeostasis, location: "内环境（血液、淋巴）",
+        examHook: "浆细胞产生抗体清除细胞外病原体；记忆细胞使二次免疫更快更强。",
+        stages: [
+            ProcessStage(id: "hi1", name: "抗原识别与呈递", detail: "病原体入侵，被吞噬细胞摄取处理，把抗原呈递给辅助性 T 细胞。",
+                         consumes: "抗原", produces: "被呈递的抗原信息"),
+            ProcessStage(id: "hi2", name: "B 细胞活化增殖", detail: "在抗原刺激和辅助性 T 细胞的作用下，B 细胞增殖、分化。",
+                         produces: "浆细胞和记忆 B 细胞",
+                         quiz: ProcessQuiz(prompt: "B 细胞增殖分化形成的是？", options: ["浆细胞和记忆细胞", "细胞毒性 T 细胞", "吞噬细胞"], answerIndex: 0, explanation: "B 细胞增殖分化为浆细胞（产生抗体）和记忆 B 细胞。")),
+            ProcessStage(id: "hi3", name: "浆细胞分泌抗体", detail: "浆细胞（效应 B 细胞）大量合成并分泌特异性抗体。",
+                         produces: "抗体",
+                         quiz: ProcessQuiz(prompt: "能产生抗体的细胞是？", options: ["浆细胞", "记忆细胞", "辅助性 T 细胞"], answerIndex: 0, explanation: "抗体由浆细胞产生；浆细胞自身不能识别抗原。")),
+            ProcessStage(id: "hi4", name: "抗体清除抗原", detail: "抗体与相应抗原特异性结合，使其失活或聚集，再被吞噬细胞清除；记忆细胞长期留存。",
+                         produces: "抗原被清除 + 记忆细胞",
+                         quiz: ProcessQuiz(prompt: "同种抗原再次入侵时反应更快更强，靠的是？", options: ["记忆细胞迅速增殖分化", "皮肤黏膜屏障", "吞噬细胞增多"], answerIndex: 0, explanation: "记忆细胞遇相同抗原能迅速增殖分化，产生大量抗体，使二次免疫更快更强。")),
         ])
 }

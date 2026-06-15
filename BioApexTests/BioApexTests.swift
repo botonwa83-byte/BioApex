@@ -278,4 +278,23 @@ final class BioApexTests: XCTestCase {
             XCTAssertFalse(loop.note.isEmpty)
         }
     }
+
+    /// 解锁价值统计（数据驱动付费墙）：各项与底层数据一致，且均能给出有意义的数字。
+    func testUnlockSummary() {
+        let s = PurchaseManager.unlockSummary
+        let premiumIds = Set(SyllabusData.all.filter { !$0.module.isFree }.map(\.id))
+        XCTAssertEqual(s.premiumPoints, premiumIds.count)
+        XCTAssertEqual(s.processes, ProcessData.all.count)
+        XCTAssertEqual(s.pedigrees, GeneticsData.pedigrees.count)
+        XCTAssertEqual(s.duels, GeneticsData.duels.count)
+        XCTAssertEqual(s.loops, HomeostasisData.all.count)
+        XCTAssertEqual(s.inquiries, InquiryData.all.count)
+        XCTAssertEqual(s.challenges, ChallengeData.all.count)
+        XCTAssertEqual(s.premiumQuestions,
+                       QuestionData.all.filter { premiumIds.contains($0.kpId) }.count)
+        // 付费墙要能展示有说服力的数字，否则数据驱动呈现失效
+        XCTAssertGreaterThan(s.premiumPoints, 0)
+        XCTAssertGreaterThan(s.premiumQuestions, 0)
+        XCTAssertGreaterThan(s.processes, PurchaseManager.freeProcessCount)
+    }
 }

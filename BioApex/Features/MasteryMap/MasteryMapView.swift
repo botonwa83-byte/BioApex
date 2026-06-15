@@ -155,14 +155,9 @@ struct ModuleDetailView: View {
     private func pointRow(_ p: KnowledgePoint) -> some View {
         let locked = purchase.isPointPremiumLocked(p)
         let st = mastery.state(of: p.id)
-        Group {
-            if locked {
-                Button { showPaywall = true } label: { rowLabel(p, locked: true, state: st) }
-            } else {
-                NavigationLink { KnowledgePointDetailView(point: p) } label: { rowLabel(p, locked: false, state: st) }
-            }
-        }
-        .buttonStyle(.plain)
+        // 锁定考点也进详情：先试看一句话钩子，再就地引导解锁（软付费墙）。
+        NavigationLink { KnowledgePointDetailView(point: p) } label: { rowLabel(p, locked: locked, state: st) }
+            .buttonStyle(.plain)
     }
 
     private func rowLabel(_ p: KnowledgePoint, locked: Bool, state: MasteryState) -> some View {

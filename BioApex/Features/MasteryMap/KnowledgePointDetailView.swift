@@ -8,23 +8,32 @@ struct KnowledgePointDetailView: View {
     @ObservedObject private var mastery = MasteryManager.shared
     @ObservedObject private var mistakes = MistakeManager.shared
     @ObservedObject private var questions = QuestionManager.shared
+    @ObservedObject private var purchase = PurchaseManager.shared
+    @State private var showPaywall = false
 
     private var kpQuestions: [Question] { QuestionData.questions(for: point.id) }
 
     private var scene: ProcessScene? { point.processId.flatMap { ProcessData.scene(id: $0) } }
+
+    /// 付费考点未解锁：试看模式（露出 essence 钩子，锁住深讲/题）。
+    private var locked: Bool { purchase.isPointPremiumLocked(point) }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.lg) {
                 header
                 essenceCard
-                if !point.detail.isEmpty { detailCard }
-                if let s = scene { processEntry(s) }
-                if let exam = point.examAngle { examCard(exam) }
-                if let mem = point.memoryAid { memCard(mem) }
-                if let err = point.commonError { errorCard(err) }
-                if !relatedPoints.isEmpty { relatedCard }
-                if kpQuestions.isEmpty { masteryControl } else { practiceSection }
+                if locked {
+                    lockedTeaser
+                } else {
+                    if !point.detail.isEmpty { detailCard }
+                    if let s = scene { processEntry(s) }
+                    if let exam = point.examAngle { examCard(exam) }
+                    if let mem = point.memoryAid { memCard(mem) }
+                    if let err = point.commonError { errorCard(err) }
+                    if !relatedPoints.isEmpty { relatedCard }
+                    if kpQuestions.isEmpty { masteryControl } else { practiceSection }
+                }
             }
             .padding(Spacing.lg)
             .readableWidth()
@@ -32,6 +41,57 @@ struct KnowledgePointDetailView: View {
         .background(Color.bioBackground.ignoresSafeArea())
         .navigationTitle(point.title)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showPaywall) { PaywallView() }
+    }
+
+    // MARK: 试看软付费墙（B）：免费看一句话钩子，深讲与配题就地引导解锁
+    private var lockedTeaser: some View {
+        VStack(alignment: .leading, spacing: Spacing.md) {
+            HStack(spacing: 6) {
+                Image(systemName: "eye.fill").font(.caption).foregroundColor(.bioGold)
+                Text("以上为免费试看 · 完整精讲已锁定").font(AppFont.chip).foregroundColor(.bioGold)
+            }
+            VStack(alignment: .leading, spacing: 10) {
+                lockRow("text.book.closed", "深讲讲透 \(point.detail.count) 条", show: !point.detail.isEmpty)
+                lockRow("scope", "高考命题角度精析", show: point.examAngle != nil)
+                lockRow("brain.head.profile", "记忆术 · 口诀", show: point.memoryAid != nil)
+                lockRow("play.circle.fill", "关联过程剧场动态演示", show: scene != nil)
+                lockRow("exclamationmark.triangle.fill", "易错警示", show: point.commonError != nil)
+                lockRow("checklist", "\(kpQuestions.count) 道精准诊断题", show: !kpQuestions.isEmpty)
+                lockRow("point.3.connected.trianglepath.dotted", "关联考点网", show: !relatedPoints.isEmpty)
+            }
+            Button { showPaywall = true } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "lock.open.fill")
+                    Text("解锁完整精讲").fontWeight(.bold)
+                }
+                .font(.headline).foregroundColor(.white)
+                .frame(maxWidth: .infinity).padding(.vertical, 14)
+                .background(LinearGradient(colors: [.bioGreen, .bioTeal], startPoint: .leading, endPoint: .trailing))
+                .cornerRadius(Radius.inner)
+            }
+            .buttonStyle(.plain)
+            Text("\(point.module.shortTitle)属于完整版内容；一次买断，永久解锁必修2 + 选必全部考点。")
+                .font(.caption2).foregroundColor(.secondary).multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(Spacing.lg)
+        .background(Color.bioGold.opacity(0.08))
+        .cornerRadius(Radius.card)
+        .overlay(RoundedRectangle(cornerRadius: Radius.card).stroke(Color.bioGold.opacity(0.3), lineWidth: 1))
+    }
+
+    @ViewBuilder
+    private func lockRow(_ icon: String, _ text: String, show: Bool) -> some View {
+        if show {
+            HStack(spacing: 10) {
+                Image(systemName: icon).font(.caption).foregroundColor(.bioGreen).frame(width: 18)
+                Text(text).font(.subheadline).foregroundColor(.primary.opacity(0.85))
+                Spacer()
+                Image(systemName: "lock.fill").font(.caption2).foregroundColor(.bioGold)
+            }
+        }
     }
 
     private var header: some View {

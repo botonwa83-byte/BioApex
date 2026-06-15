@@ -6,11 +6,11 @@
   "products" : [
     {
       "displayPrice" : "22.00",
-      "familyShareable" : false,
+      "familyShareable" : true,
       "internalID" : "08801880-5780-45AE-8D98-ED1FC5D9B4E4",
       "localizations" : [
         {
-          "description" : "一次买断,解锁高中必修2与选择性必修全部考点、全部过程剧场、遗传神探/秒算、稳态回路与探究实验台。无订阅、无续费,支持换机恢复购买。",
+          "description" : "一次买断,解锁高中必修2与选择性必修全部考点、全部过程剧场、遗传神探/秒算、稳态回路与探究实验台。无订阅、无续费,支持换机恢复购买,支持家庭共享(最多 6 人)。",
           "displayName" : "完整版解锁",
           "locale" : "zh_CN"
         }

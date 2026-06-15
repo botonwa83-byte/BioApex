@@ -26,14 +26,9 @@ struct PedigreeDetectiveView: View {
 
     @ViewBuilder
     private func caseRow(_ c: PedigreeCase, locked: Bool) -> some View {
-        Group {
-            if locked {
-                Button { showPaywall = true } label: { caseLabel(c, locked: true) }
-            } else {
-                NavigationLink { PedigreeCaseView(pedigree: c) } label: { caseLabel(c, locked: false) }
-            }
-        }
-        .buttonStyle(.plain)
+        // 锁定案件也进详情：试看案情 + 第 1 条线索，再就地引导解锁。
+        NavigationLink { PedigreeCaseView(pedigree: c, previewLocked: locked) } label: { caseLabel(c, locked: locked) }
+            .buttonStyle(.plain)
     }
 
     private func caseLabel(_ c: PedigreeCase, locked: Bool) -> some View {
@@ -58,33 +53,66 @@ struct PedigreeDetectiveView: View {
 
 struct PedigreeCaseView: View {
     let pedigree: PedigreeCase
+    var previewLocked: Bool = false
     @State private var revealed = 1
     @State private var picked: Int? = nil
     @State private var solved = false
+    @State private var showPaywall = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.lg) {
                 scenarioCard
-                SectionHeader(title: "线索 · \(revealed)/\(pedigree.clues.count)", systemImage: "doc.text.magnifyingglass", accent: .bioPurple)
-                ForEach(pedigree.clues.prefix(revealed)) { clue in clueCard(clue) }
-                if revealed < pedigree.clues.count && !solved {
-                    Button { withAnimation { revealed += 1 } } label: {
-                        Label("揭开下一条线索", systemImage: "hand.point.right")
-                            .font(AppFont.cardTitle).frame(maxWidth: .infinity).padding(Spacing.md)
-                            .background(Color.bioPurple.opacity(0.12)).foregroundColor(.bioPurple).cornerRadius(Radius.inner)
+                if previewLocked {
+                    SectionHeader(title: "线索 · 1/\(pedigree.clues.count)", systemImage: "doc.text.magnifyingglass", accent: .bioPurple)
+                    if let first = pedigree.clues.first { clueCard(first) }
+                    unlockGate
+                } else {
+                    SectionHeader(title: "线索 · \(revealed)/\(pedigree.clues.count)", systemImage: "doc.text.magnifyingglass", accent: .bioPurple)
+                    ForEach(pedigree.clues.prefix(revealed)) { clue in clueCard(clue) }
+                    if revealed < pedigree.clues.count && !solved {
+                        Button { withAnimation { revealed += 1 } } label: {
+                            Label("揭开下一条线索", systemImage: "hand.point.right")
+                                .font(AppFont.cardTitle).frame(maxWidth: .infinity).padding(Spacing.md)
+                                .background(Color.bioPurple.opacity(0.12)).foregroundColor(.bioPurple).cornerRadius(Radius.inner)
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
+                    SectionHeader(title: "锁定遗传方式", systemImage: "checkmark.seal", accent: .bioGreen)
+                    ForEach(pedigree.options.indices, id: \.self) { i in optionButton(i) }
+                    if solved { verdictCard }
                 }
-                SectionHeader(title: "锁定遗传方式", systemImage: "checkmark.seal", accent: .bioGreen)
-                ForEach(pedigree.options.indices, id: \.self) { i in optionButton(i) }
-                if solved { verdictCard }
             }
             .padding(Spacing.lg)
             .readableWidth()
         }
         .background(Color.bioBackground.ignoresSafeArea())
         .navigationTitle(pedigree.title).navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showPaywall) { PaywallView() }
+    }
+
+    private var unlockGate: some View {
+        VStack(spacing: Spacing.sm) {
+            HStack(spacing: 6) {
+                Image(systemName: "eye.fill").font(.caption).foregroundColor(.bioGold)
+                Text("免费试看案情与第 1 条线索 · 全案 \(pedigree.clues.count) 条").font(AppFont.chip).foregroundColor(.bioGold)
+            }
+            Button { showPaywall = true } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "lock.open.fill")
+                    Text("解锁完整破案").fontWeight(.bold)
+                }
+                .font(.headline).foregroundColor(.white)
+                .frame(maxWidth: .infinity).padding(.vertical, 14)
+                .background(LinearGradient(colors: [.bioPurple, .bioBlue], startPoint: .leading, endPoint: .trailing))
+                .cornerRadius(Radius.inner)
+            }
+            .buttonStyle(.plain)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(Spacing.lg)
+        .background(Color.bioGold.opacity(0.08)).cornerRadius(Radius.card)
+        .overlay(RoundedRectangle(cornerRadius: Radius.card).stroke(Color.bioGold.opacity(0.3), lineWidth: 1))
     }
 
     private var scenarioCard: some View {

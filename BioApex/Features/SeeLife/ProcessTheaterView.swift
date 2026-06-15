@@ -5,10 +5,13 @@ import SwiftUI
 
 struct ProcessTheaterView: View {
     let scene: ProcessScene
+    var previewLocked: Bool = false   // 付费过程未解锁：试看第 1 步，其余引导解锁
 
     @State private var step = 0
     @State private var answered: Set<Int> = []   // 已通过断点的步骤下标
     @State private var picked: Int? = nil
+    @State private var showPaywall = false
+    private let previewFreeSteps = 1
 
     private var current: ProcessStage { scene.stages[step] }
     private var gateBlocked: Bool {
@@ -36,6 +39,7 @@ struct ProcessTheaterView: View {
         .background(Color.bioBackground.ignoresSafeArea())
         .navigationTitle(scene.title)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showPaywall) { PaywallView() }
     }
 
     private var infoHeader: some View {
@@ -143,24 +147,54 @@ struct ProcessTheaterView: View {
 
     // MARK: 导航
 
+    @ViewBuilder
     private var navButtons: some View {
-        HStack(spacing: Spacing.md) {
-            Button { withAnimation { step = max(0, step - 1); picked = nil } } label: {
-                Label("上一步", systemImage: "chevron.left")
-                    .font(AppFont.cardTitle).frame(maxWidth: .infinity).padding(.vertical, 12)
-                    .background(Color.secondary.opacity(0.12)).foregroundColor(.primary).cornerRadius(Radius.inner)
-            }
-            .buttonStyle(.plain).disabled(step == 0)
+        // 试看到达免费边界且后面还有步骤：用解锁引导替换「下一步」
+        if previewLocked && step >= previewFreeSteps - 1 && step < scene.stages.count - 1 {
+            unlockGate
+        } else {
+            HStack(spacing: Spacing.md) {
+                Button { withAnimation { step = max(0, step - 1); picked = nil } } label: {
+                    Label("上一步", systemImage: "chevron.left")
+                        .font(AppFont.cardTitle).frame(maxWidth: .infinity).padding(.vertical, 12)
+                        .background(Color.secondary.opacity(0.12)).foregroundColor(.primary).cornerRadius(Radius.inner)
+                }
+                .buttonStyle(.plain).disabled(step == 0)
 
-            Button { withAnimation { step = min(scene.stages.count - 1, step + 1); picked = nil } } label: {
-                Label(step == scene.stages.count - 1 ? "已到结尾" : "下一步", systemImage: "chevron.right")
-                    .font(AppFont.cardTitle).frame(maxWidth: .infinity).padding(.vertical, 12)
-                    .background(gateBlocked || step == scene.stages.count - 1 ? Color.secondary.opacity(0.12) : Color.bioTeal)
-                    .foregroundColor(gateBlocked || step == scene.stages.count - 1 ? .secondary : .white)
-                    .cornerRadius(Radius.inner)
+                Button { withAnimation { step = min(scene.stages.count - 1, step + 1); picked = nil } } label: {
+                    Label(step == scene.stages.count - 1 ? "已到结尾" : "下一步", systemImage: "chevron.right")
+                        .font(AppFont.cardTitle).frame(maxWidth: .infinity).padding(.vertical, 12)
+                        .background(gateBlocked || step == scene.stages.count - 1 ? Color.secondary.opacity(0.12) : Color.bioTeal)
+                        .foregroundColor(gateBlocked || step == scene.stages.count - 1 ? .secondary : .white)
+                        .cornerRadius(Radius.inner)
+                }
+                .buttonStyle(.plain).disabled(gateBlocked || step == scene.stages.count - 1)
             }
-            .buttonStyle(.plain).disabled(gateBlocked || step == scene.stages.count - 1)
         }
+    }
+
+    private var unlockGate: some View {
+        VStack(spacing: Spacing.sm) {
+            HStack(spacing: 6) {
+                Image(systemName: "eye.fill").font(.caption).foregroundColor(.bioGold)
+                Text("免费试看第 1 步 · 全程共 \(scene.stages.count) 步").font(AppFont.chip).foregroundColor(.bioGold)
+            }
+            Button { showPaywall = true } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "lock.open.fill")
+                    Text("解锁完整过程剧场").fontWeight(.bold)
+                }
+                .font(.headline).foregroundColor(.white)
+                .frame(maxWidth: .infinity).padding(.vertical, 14)
+                .background(LinearGradient(colors: [.bioTeal, .bioGreen], startPoint: .leading, endPoint: .trailing))
+                .cornerRadius(Radius.inner)
+            }
+            .buttonStyle(.plain)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(Spacing.lg)
+        .background(Color.bioGold.opacity(0.08)).cornerRadius(Radius.card)
+        .overlay(RoundedRectangle(cornerRadius: Radius.card).stroke(Color.bioGold.opacity(0.3), lineWidth: 1))
     }
 
     private var examHookCard: some View {

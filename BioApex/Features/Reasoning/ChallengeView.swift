@@ -24,14 +24,9 @@ struct ChallengeView: View {
 
     @ViewBuilder
     private func row(_ p: ChallengeProblem, locked: Bool) -> some View {
-        Group {
-            if locked {
-                Button { showPaywall = true } label: { label(p, locked: true) }
-            } else {
-                NavigationLink { ChallengeDetailView(problem: p) } label: { label(p, locked: false) }
-            }
-        }
-        .buttonStyle(.plain)
+        // 锁定压轴题也进详情：试看题干与「常规思路困境」，巧解就地引导解锁。
+        NavigationLink { ChallengeDetailView(problem: p, previewLocked: locked) } label: { label(p, locked: locked) }
+            .buttonStyle(.plain)
     }
 
     private func label(_ p: ChallengeProblem, locked: Bool) -> some View {
@@ -57,7 +52,9 @@ struct ChallengeView: View {
 
 struct ChallengeDetailView: View {
     let problem: ChallengeProblem
+    var previewLocked: Bool = false
     @State private var showSolution = false
+    @State private var showPaywall = false
 
     var body: some View {
         ScrollView {
@@ -74,7 +71,9 @@ struct ChallengeDetailView: View {
 
                 trapCard
 
-                if !showSolution {
+                if previewLocked {
+                    unlockGate
+                } else if !showSolution {
                     Button { withAnimation { showSolution = true } } label: {
                         Label("揭晓巧解", systemImage: "eye").font(AppFont.cardTitle)
                             .frame(maxWidth: .infinity).padding(.vertical, 14)
@@ -93,6 +92,31 @@ struct ChallengeDetailView: View {
         }
         .background(Color.bioBackground.ignoresSafeArea())
         .navigationTitle("破题之眼").navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showPaywall) { PaywallView() }
+    }
+
+    private var unlockGate: some View {
+        VStack(spacing: Spacing.sm) {
+            HStack(spacing: 6) {
+                Image(systemName: "eye.fill").font(.caption).foregroundColor(.bioGold)
+                Text("免费试看题干与「常规思路困境」 · 巧解已锁定").font(AppFont.chip).foregroundColor(.bioGold)
+            }
+            Button { showPaywall = true } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "lock.open.fill")
+                    Text("解锁巧解 · 识局关键 + 步骤 + 方法迁移").fontWeight(.bold)
+                }
+                .font(.subheadline).foregroundColor(.white)
+                .frame(maxWidth: .infinity).padding(.vertical, 14)
+                .background(LinearGradient(colors: [.bioGreen, .bioTeal], startPoint: .leading, endPoint: .trailing))
+                .cornerRadius(Radius.inner)
+            }
+            .buttonStyle(.plain)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(Spacing.lg)
+        .background(Color.bioGold.opacity(0.08)).cornerRadius(Radius.card)
+        .overlay(RoundedRectangle(cornerRadius: Radius.card).stroke(Color.bioGold.opacity(0.3), lineWidth: 1))
     }
 
     private var trapCard: some View {

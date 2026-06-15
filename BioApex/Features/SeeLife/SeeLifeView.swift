@@ -60,14 +60,9 @@ struct SeeLifeView: View {
 
     @ViewBuilder
     private func processRow(_ scene: ProcessScene, locked: Bool) -> some View {
-        Group {
-            if locked {
-                Button { showPaywall = true } label: { processLabel(scene, locked: true) }
-            } else {
-                NavigationLink { ProcessTheaterView(scene: scene) } label: { processLabel(scene, locked: false) }
-            }
-        }
-        .buttonStyle(.plain)
+        // 锁定过程也进剧场：试看第 1 步，再就地引导解锁（软付费墙）。
+        NavigationLink { ProcessTheaterView(scene: scene, previewLocked: locked) } label: { processLabel(scene, locked: locked) }
+            .buttonStyle(.plain)
     }
 
     private func processLabel(_ scene: ProcessScene, locked: Bool) -> some View {
