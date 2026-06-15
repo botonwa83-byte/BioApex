@@ -62,6 +62,47 @@ final class BioApexTests: XCTestCase {
         XCTAssertTrue(freeScenes.allSatisfy { $0.module.isFree }, "免费过程应属于免费模块")
     }
 
+    /// 考点深化（P9）：已深化考点的 related 关联 id 必须真实存在；至少深化了若干高频考点。
+    func testDeepenedPoints() {
+        let ids = Set(SyllabusData.all.map(\.id))
+        let deepened = SyllabusData.all.filter { $0.isDeepened }
+        XCTAssertGreaterThanOrEqual(deepened.count, 6, "应已深化若干高频考点")
+        for p in deepened {
+            XCTAssertFalse(p.detail.isEmpty)
+            for r in p.related {
+                XCTAssertTrue(ids.contains(r), "考点 \(p.id) 关联了不存在的考点 \(r)")
+            }
+        }
+    }
+
+    /// 题库（P10）：ID 唯一、所属考点存在、答案/采分点/解析合法。
+    func testQuestionData() {
+        let ids = QuestionData.all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "题目 ID 重复")
+        let kpIds = Set(SyllabusData.all.map(\.id))
+        for q in QuestionData.all {
+            XCTAssertTrue(kpIds.contains(q.kpId), "题 \(q.id) 所属考点 \(q.kpId) 不存在")
+            XCTAssertFalse(q.stem.isEmpty); XCTAssertFalse(q.explanation.isEmpty)
+            switch q.type {
+            case .choice:
+                XCTAssertGreaterThanOrEqual(q.options.count, 2, "题 \(q.id) 选项太少")
+                XCTAssertTrue(q.options.indices.contains(q.answerIndex), "题 \(q.id) 答案越界")
+            case .shortAnswer:
+                XCTAssertFalse(q.modelAnswer.isEmpty, "题 \(q.id) 缺标准答案")
+                XCTAssertGreaterThanOrEqual(q.scorePoints.count, 2, "题 \(q.id) 采分点太少")
+            }
+        }
+    }
+
+    /// 配题按权重：已配题的高频(weight=3)考点应 ≥2 题。
+    func testQuestionWeightCalibration() {
+        for p in SyllabusData.all where p.weight == 3 && QuestionData.hasQuestions(p.id) {
+            XCTAssertGreaterThanOrEqual(QuestionData.questions(for: p.id).count, 2,
+                                        "高频考点 \(p.id) 配题应 ≥2")
+        }
+        XCTAssertFalse(QuestionData.all.isEmpty)
+    }
+
     /// 每个教材模块都要有考点（不能空模块）。
     func testEveryModuleHasPoints() {
         for m in BioModule.allCases {

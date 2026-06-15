@@ -91,11 +91,17 @@ struct KnowledgePoint: Identifiable, Codable {
     let module: BioModule
     let chapter: String          // 章/主题
     let title: String            // 考点名
-    let essence: String          // 精讲：一两句把这个考点讲透
+    let essence: String          // 一句话钩子：先抓住核心
     var weight: Int = 1          // 考频/分值权重 1–3（3=高频高分）
     var commonError: String? = nil   // 易错提示
     var processId: String? = nil     // 关联的过程剧场 id
+    // P9 深化四层（默认空，高频考点优先写厚）
+    var detail: [String] = []        // 深讲：分条把考点讲透
+    var examAngle: String? = nil     // 高考怎么考：常见命题角度
+    var memoryAid: String? = nil     // 记忆术 / 口诀
+    var related: [String] = []       // 关联考点 id（概念关联网）
     var stage: BioStage { module.stage }
+    var isDeepened: Bool { !detail.isEmpty }
 }
 
 // MARK: - 过程剧场（生物闪光点：动态过程可视化）

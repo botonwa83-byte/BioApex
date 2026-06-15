@@ -30,7 +30,9 @@
 		9E42841B3934B01FF294EF22 /* InquiryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C908E6A36A6D814BC11034 /* InquiryData.swift */; };
 		A016EC5CB971C91214C0D057 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729CDF4FC4C46C3E41B80CF /* PurchaseManager.swift */; };
 		A30456BE0FFEE23F103FB920 /* BioApexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E122539BB0973572B9042B0 /* BioApexApp.swift */; };
+		A37849E1C80AE36C298EC893 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F48AC4109836B285E8CE05 /* QuestionData.swift */; };
 		A4E7C09BF1B76BFF48406B5D /* ReasoningModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3480D4F2D242EF20F01F364 /* ReasoningModels.swift */; };
+		A78789539B50287AF91DF319 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE837FFC089960FCD86063 /* QuestionManager.swift */; };
 		B6D3E82E548448249C9906A4 /* MasteryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA7B71D93EBE3E8F1CFDE2 /* MasteryManager.swift */; };
 		B7676C2D0F9B17A168C6956E /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC992C38035A9D4CCD92C937 /* ThemeColors.swift */; };
 		C3C0BA25D7C761FF4B701AFA /* ProcessTheaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C831104CE5D4AD9BC82229 /* ProcessTheaterView.swift */; };
@@ -42,9 +44,11 @@
 		E7BCCCCF9423B8D35DDEB324 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E37C55D983CCDB7D67B8E /* PaywallView.swift */; };
 		F3D70652191AE57F849B2D3D /* LifeScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02123D90957C0BE525588B77 /* LifeScaleView.swift */; };
 		F75918C1DBA3F915C51ECD84 /* ReviewScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF1FD99EF824E93E0BD572 /* ReviewScheduler.swift */; };
+		F835F71BC79CD99829416D42 /* PracticeViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A5768B8BA3900933BDDA9C /* PracticeViews.swift */; };
 		F89085C55502F1DA379D6607 /* LoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E23A7F784919599943797 /* LoreData.swift */; };
 		F97F4C4DB38FD217608CA56B /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CA70004E92563E72B6CC47 /* DesignSystem.swift */; };
 		FEEDC97213BFFC0D5257CA35 /* InquiryLabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A00B454843279EF00557A6 /* InquiryLabView.swift */; };
+		FF960660DD5243331C972244 /* QuestionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDF425AE41EAECF363BE133 /* QuestionModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,15 +81,18 @@
 		55D30806D3AE64A50241753A /* PromoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoView.swift; sourceTree = "<group>"; };
 		6ABA12EF7E880B12C839DA79 /* MoreFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreFeatures.swift; sourceTree = "<group>"; };
 		7E674E1D33839F28ADB95733 /* MasteryMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryMapView.swift; sourceTree = "<group>"; };
+		85A5768B8BA3900933BDDA9C /* PracticeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViews.swift; sourceTree = "<group>"; };
 		8729CDF4FC4C46C3E41B80CF /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		89C908E6A36A6D814BC11034 /* InquiryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryData.swift; sourceTree = "<group>"; };
 		8AFEB48CF01A35A75B47BA82 /* GeneticsDuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticsDuelView.swift; sourceTree = "<group>"; };
+		8BEE837FFC089960FCD86063 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
 		8C7EDF2236EEF0AB908E7494 /* ReasoningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasoningView.swift; sourceTree = "<group>"; };
 		9B2091E0E848811AF6C6B032 /* ProcessData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessData.swift; sourceTree = "<group>"; };
 		9E122539BB0973572B9042B0 /* BioApexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioApexApp.swift; sourceTree = "<group>"; };
 		A2062D62D720D863E217E7F8 /* PedigreeDetectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedigreeDetectiveView.swift; sourceTree = "<group>"; };
 		BAFF56C25958FFA9FAD84E5C /* LoreViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoreViews.swift; sourceTree = "<group>"; };
 		BC992C38035A9D4CCD92C937 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		BFDF425AE41EAECF363BE133 /* QuestionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModels.swift; sourceTree = "<group>"; };
 		C3480D4F2D242EF20F01F364 /* ReasoningModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasoningModels.swift; sourceTree = "<group>"; };
 		C47BF83330063642C13DA6B6 /* InquiryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryModels.swift; sourceTree = "<group>"; };
 		CE7E37C55D983CCDB7D67B8E /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
@@ -96,7 +103,8 @@
 		E86E23A7F784919599943797 /* LoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoreData.swift; sourceTree = "<group>"; };
 		E8DA7B71D93EBE3E8F1CFDE2 /* MasteryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryManager.swift; sourceTree = "<group>"; };
 		F037B111DCF7743C63E9CDAC /* KnowledgePointDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgePointDetailView.swift; sourceTree = "<group>"; };
-		F1F9D434945B01F50F6A5EA4 /* BioApex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BioApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1F48AC4109836B285E8CE05 /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
+		F1F9D434945B01F50F6A5EA4 /* BioApex.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BioApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F66E30AA6A2256CAFF6C7642 /* SeeLifeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeLifeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +122,8 @@
 				049FE62DC406E56CE425D4D7 /* OrganelleData.swift */,
 				9B2091E0E848811AF6C6B032 /* ProcessData.swift */,
 				8729CDF4FC4C46C3E41B80CF /* PurchaseManager.swift */,
+				F1F48AC4109836B285E8CE05 /* QuestionData.swift */,
+				8BEE837FFC089960FCD86063 /* QuestionManager.swift */,
 				E1AF1FD99EF824E93E0BD572 /* ReviewScheduler.swift */,
 				382145FE055927A8A015F410 /* ScaleData.swift */,
 				D7E93F376FA2DAC6C98BF66D /* SyllabusData.swift */,
@@ -221,6 +231,7 @@
 			children = (
 				3BF5B5AE92B56F95BC247497 /* BioModels.swift */,
 				C47BF83330063642C13DA6B6 /* InquiryModels.swift */,
+				BFDF425AE41EAECF363BE133 /* QuestionModels.swift */,
 				C3480D4F2D242EF20F01F364 /* ReasoningModels.swift */,
 				3B863C016A0C1F4EE1F060E0 /* ReviewModels.swift */,
 				442659DA3FA77ED86896E25F /* SeeLifeModels.swift */,
@@ -242,6 +253,7 @@
 			children = (
 				F037B111DCF7743C63E9CDAC /* KnowledgePointDetailView.swift */,
 				7E674E1D33839F28ADB95733 /* MasteryMapView.swift */,
+				85A5768B8BA3900933BDDA9C /* PracticeViews.swift */,
 			);
 			path = MasteryMap;
 			sourceTree = "<group>";
@@ -322,6 +334,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 0C2FC8B219372B32148FB22E /* Build configuration list for PBXProject "BioApex" */;
 			developmentRegion = en;
@@ -390,10 +404,14 @@
 				7BDA04D46294608FBCE5C2FE /* OrganelleData.swift in Sources */,
 				E7BCCCCF9423B8D35DDEB324 /* PaywallView.swift in Sources */,
 				D5FAD41CE4EA600607C47EAF /* PedigreeDetectiveView.swift in Sources */,
+				F835F71BC79CD99829416D42 /* PracticeViews.swift in Sources */,
 				8FEF31AE802BCC9BB3625F8B /* ProcessData.swift in Sources */,
 				C3C0BA25D7C761FF4B701AFA /* ProcessTheaterView.swift in Sources */,
 				61AB1D6D473EB3812A18D984 /* PromoView.swift in Sources */,
 				A016EC5CB971C91214C0D057 /* PurchaseManager.swift in Sources */,
+				A37849E1C80AE36C298EC893 /* QuestionData.swift in Sources */,
+				A78789539B50287AF91DF319 /* QuestionManager.swift in Sources */,
+				FF960660DD5243331C972244 /* QuestionModels.swift in Sources */,
 				A4E7C09BF1B76BFF48406B5D /* ReasoningModels.swift in Sources */,
 				65E06F503EEBB6942E50A1A0 /* ReasoningView.swift in Sources */,
 				5031F67352E252F63B344F2B /* ReviewModels.swift in Sources */,
@@ -499,7 +517,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = Z7F8BY55DS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BioApex;
@@ -608,7 +625,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = Z7F8BY55DS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = BioApex;

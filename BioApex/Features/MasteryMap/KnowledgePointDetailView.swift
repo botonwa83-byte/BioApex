@@ -7,6 +7,9 @@ struct KnowledgePointDetailView: View {
     let point: KnowledgePoint
     @ObservedObject private var mastery = MasteryManager.shared
     @ObservedObject private var mistakes = MistakeManager.shared
+    @ObservedObject private var questions = QuestionManager.shared
+
+    private var kpQuestions: [Question] { QuestionData.questions(for: point.id) }
 
     private var scene: ProcessScene? { point.processId.flatMap { ProcessData.scene(id: $0) } }
 
@@ -15,9 +18,13 @@ struct KnowledgePointDetailView: View {
             VStack(alignment: .leading, spacing: Spacing.lg) {
                 header
                 essenceCard
+                if !point.detail.isEmpty { detailCard }
                 if let s = scene { processEntry(s) }
+                if let exam = point.examAngle { examCard(exam) }
+                if let mem = point.memoryAid { memCard(mem) }
                 if let err = point.commonError { errorCard(err) }
-                masteryControl
+                if !relatedPoints.isEmpty { relatedCard }
+                if kpQuestions.isEmpty { masteryControl } else { practiceSection }
             }
             .padding(Spacing.lg)
             .readableWidth()
@@ -42,13 +49,68 @@ struct KnowledgePointDetailView: View {
 
     private var essenceCard: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
-            SectionHeader(title: "精讲 · 一句话讲透", systemImage: "lightbulb", accent: .bioGold)
+            SectionHeader(title: "一句话抓核心", systemImage: "lightbulb", accent: .bioGold)
             Text(point.essence).font(.body).lineSpacing(4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(Spacing.lg)
         .background(Color.bioGold.opacity(0.08))
         .cornerRadius(Radius.card)
+    }
+
+    private var detailCard: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader(title: "深讲 · 讲透", systemImage: "text.book.closed", accent: .bioGreen)
+            ForEach(Array(point.detail.enumerated()), id: \.offset) { _, line in
+                HStack(alignment: .top, spacing: 8) {
+                    Circle().fill(Color.bioGreen).frame(width: 6, height: 6).padding(.top, 7)
+                    Text(line).font(.subheadline).lineSpacing(3)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading).cardSurface(padding: Spacing.lg)
+    }
+
+    private func examCard(_ exam: String) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Label("高考怎么考", systemImage: "scope").font(AppFont.chip).foregroundColor(.bioBlue)
+            Text(exam).font(.subheadline).foregroundColor(.primary.opacity(0.9))
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(Spacing.lg).background(Color.bioBlue.opacity(0.08)).cornerRadius(Radius.card)
+    }
+
+    private func memCard(_ mem: String) -> some View {
+        HStack(alignment: .top, spacing: 8) {
+            Image(systemName: "brain.head.profile").font(.caption).foregroundColor(.bioPurple).padding(.top, 2)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("记忆术").font(AppFont.chip).foregroundColor(.bioPurple)
+                Text(mem).font(.subheadline).foregroundColor(.primary.opacity(0.9))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(Spacing.lg).background(Color.bioPurple.opacity(0.08)).cornerRadius(Radius.card)
+    }
+
+    private var relatedPoints: [KnowledgePoint] { point.related.compactMap { SyllabusData.point(id: $0) } }
+
+    private var relatedCard: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader(title: "关联考点 · 串成网", systemImage: "point.3.connected.trianglepath.dotted", accent: .bioTeal)
+            ForEach(relatedPoints) { rp in
+                NavigationLink { KnowledgePointDetailView(point: rp) } label: {
+                    HStack {
+                        Image(systemName: "arrow.turn.down.right").font(.caption).foregroundColor(.bioTeal)
+                        Text(rp.title).font(.subheadline).foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "chevron.right").font(.caption2).foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading).cardSurface(padding: Spacing.lg)
     }
 
     private func processEntry(_ s: ProcessScene) -> some View {
@@ -82,6 +144,40 @@ struct KnowledgePointDetailView: View {
         .padding(Spacing.lg)
         .background(Color.bioDanger.opacity(0.08))
         .cornerRadius(Radius.card)
+    }
+
+    // 练一练：做对全部诊断题 → 自动验证掌握
+    private var practiceSection: some View {
+        let p = questions.progress(for: point.id)
+        let verified = questions.isKpVerified(point.id)
+        return VStack(alignment: .leading, spacing: Spacing.md) {
+            HStack {
+                SectionHeader(title: "练一练 · 做对即掌握", systemImage: "checklist", accent: .bioBlue)
+                Text("\(p.done)/\(p.total)").font(AppFont.chip).foregroundColor(verified ? .bioGreen : .secondary)
+            }
+            Text("按高考权重配题(本考点 \(p.total) 题);全部做对即计入高考覆盖率。")
+                .font(.caption2).foregroundColor(.secondary)
+            ForEach(kpQuestions) { q in
+                QuestionCard(question: q) {
+                    if questions.isKpVerified(point.id) { mastery.markMastered(point.id) }
+                }
+            }
+            if verified {
+                HStack {
+                    Image(systemName: "checkmark.seal.fill").foregroundColor(.bioGreen)
+                    Text("已掌握本考点,已计入覆盖率并排期复习").font(AppFont.cardTitle).foregroundColor(.bioGreen)
+                }
+                .frame(maxWidth: .infinity).padding(.vertical, 12)
+                .background(Color.bioGreen.opacity(0.1)).cornerRadius(Radius.inner)
+            }
+            Button { mistakes.toggleWeak(point.id) } label: {
+                Label(mistakes.isWeak(point.id) ? "已标记薄弱（在错题本里）" : "标记为薄弱点",
+                      systemImage: mistakes.isWeak(point.id) ? "flag.fill" : "flag")
+                    .font(.footnote).foregroundColor(.bioDanger)
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(.top, Spacing.sm)
     }
 
     private var masteryControl: some View {
