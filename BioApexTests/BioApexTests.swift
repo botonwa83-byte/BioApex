@@ -137,6 +137,9 @@ final class BioApexTests: XCTestCase {
             if let ex = g.exampleChallengeId {
                 XCTAssertTrue(challengeIds.contains(ex), "武器 \(g.weapon.name) 例题 \(ex) 不存在")
             }
+            // P1：每把武器至少有一个去处（压轴例题 或 练习去向）
+            XCTAssertTrue(g.exampleChallengeId != nil || g.practiceHint != nil,
+                          "武器 \(g.weapon.name) 既无压轴例题也无练习去向")
         }
     }
 
