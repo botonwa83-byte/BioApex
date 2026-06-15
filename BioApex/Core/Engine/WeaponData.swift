@@ -1,0 +1,57 @@
+import Foundation
+
+// MARK: - 武器库教学数据（家族标配）
+// 每把武器：何时用(识局) → 怎么用(步骤) → 例题(破题之眼) / 去哪练。
+
+enum WeaponData {
+    static let all: [WeaponGuide] = [
+        WeaponGuide(weapon: .isotope, tagline: "追踪原子的来龙去脉",
+            whenToUse: ["题目问「某原子/元素来自哪里、去了哪里」", "涉及光合、呼吸、分泌蛋白合成运输等过程的物质来源"],
+            steps: ["给目标原子换成可检测的同位素（如 ¹⁸O、³²P、³⁵S、¹⁴C）",
+                    "顺着过程追踪它进入了哪个产物",
+                    "对比不同标记组的结果得出来源/去向"],
+            exampleChallengeId: "ch_isotope"),
+        WeaponGuide(weapon: .extremeValue, tagline: "推到两个极端，答案夹在中间",
+            whenToUse: ["求能量流动的最多/最少", "混合物比例未知、求范围"],
+            steps: ["确定两个极端条件（如最高/最低传递效率）", "分别算出两个极值", "真实结果落在两值之间；按题意取对应极端"],
+            exampleChallengeId: "ch_energy"),
+        WeaponGuide(weapon: .hypothesis, tagline: "先假设，再看是否矛盾",
+            whenToUse: ["判断显隐性、遗传方式（常/X）", "已知部分结果、需排除某种可能"],
+            steps: ["提出一个假设（如假设伴 X 隐性）", "在该假设下推出必然结果", "与题目已知比对：矛盾则排除，不矛盾则成立"],
+            exampleChallengeId: "ch_hypothesis"),
+        WeaponGuide(weapon: .hardyWeinberg, tagline: "遗传平衡下用频率公式",
+            whenToUse: ["已知发病率求基因频率/携带者比例", "竞赛或拔高的群体遗传计算"],
+            steps: ["隐性纯合 aa 频率 = q²", "开平方得 q，再求 p = 1 − q", "携带者 Aa = 2pq；显性 = p² + 2pq"],
+            exampleChallengeId: "ch_hw"),
+        WeaponGuide(weapon: .dataInsight, tagline: "从数据/比值里读出过程",
+            whenToUse: ["给出 RQ、比值、坐标数据要判断过程或类型", "异常数据需要解释"],
+            steps: ["明确各数据的生物学含义", "与「标准值」比较（如 RQ=1）", "由偏离方向反推发生了什么"],
+            exampleChallengeId: "ch_rq"),
+        WeaponGuide(weapon: .probability, tagline: "复杂概率拆成独立事件相乘",
+            whenToUse: ["多对基因、多步骤求某结果的概率", "患病/正常/携带者概率"],
+            steps: ["把事件拆成相互独立的几个", "分别求每个的概率", "同时发生相乘、互斥相加"],
+            practiceHint: "去「遗传秒算」练手"),
+        WeaponGuide(weapon: .gamete, tagline: "先定配子，再组合后代",
+            whenToUse: ["求后代基因型/表现型种类与比例", "含连锁或特殊配子比例"],
+            steps: ["写出每个亲本产生的配子种类及比例", "配子两两组合（棋盘或相乘）", "合并相同基因型，得后代比例"],
+            practiceHint: "去「遗传秒算」练手"),
+        WeaponGuide(weapon: .pedigree, tagline: "系谱三步：显隐 → 常/X → 概率",
+            whenToUse: ["给出家族系谱图判断遗传方式或求概率"],
+            steps: ["看「无中生有/有中生无」定显隐", "用女患者之父、男患者之母排除或确定 X", "据基因型按概率计算"],
+            practiceHint: "去「遗传神探」破案"),
+        WeaponGuide(weapon: .graphReading, tagline: "看轴 → 看点 → 看拐点",
+            whenToUse: ["任何坐标曲线/柱状/数据图题"],
+            steps: ["先看横纵坐标各代表什么、单位", "找起点、终点、交点、最高/最低点的含义", "看拐点与趋势对应什么变化"],
+            practiceHint: "去「图表曲线分析」专练"),
+        WeaponGuide(weapon: .control, tagline: "单一变量 + 对照 + 等量",
+            whenToUse: ["实验设计与分析、评价实验是否严谨"],
+            steps: ["找准自变量、因变量、无关变量", "设置对照（空白/相互对照）", "无关变量等量且适宜，只让自变量变化"],
+            practiceHint: "去「探究实验台」闯关"),
+        WeaponGuide(weapon: .scoring, tagline: "答到点、用术语，大题靠踩分",
+            whenToUse: ["简答题、原因分析、实验结论的规范表述"],
+            steps: ["先想清逻辑链：原因 → 机制 → 结果", "逐条对应采分点，用规范术语", "因果完整、不漏关键词"],
+            practiceHint: "去「简答采分训练」对照采分点"),
+    ]
+
+    static func guide(for weapon: BioWeapon) -> WeaponGuide? { all.first { $0.weapon == weapon } }
+}

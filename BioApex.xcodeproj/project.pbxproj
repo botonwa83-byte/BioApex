@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		07035842AC9D6019A07185B3 /* MoreFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA12EF7E880B12C839DA79 /* MoreFeatures.swift */; };
+		1191D91860B89ED78EB5CF93 /* GraphModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB66EBFC56E02A75642CBAAD /* GraphModels.swift */; };
+		207AFD6177CE4A5B1C02D60E /* GraphData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C2C3BD9278F9F21104F1C /* GraphData.swift */; };
 		21122D2DBDAF4FD922B10153 /* MasteryMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E674E1D33839F28ADB95733 /* MasteryMapView.swift */; };
 		3561350306F66D8C0A185532 /* HomeostasisData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E086FC0E8143CD68FBC8771 /* HomeostasisData.swift */; };
 		4779E16F8CCF090B3F1B90CB /* BioModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5B5AE92B56F95BC247497 /* BioModels.swift */; };
@@ -21,10 +23,15 @@
 		637B286D6CFC98303D6B4E2C /* GiantsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58EA12639D4FA92A8BA3DA /* GiantsData.swift */; };
 		651B1379D001667CC66A33AD /* GeneticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B34CC83A4BC65E90D9FDB72 /* GeneticsData.swift */; };
 		65E06F503EEBB6942E50A1A0 /* ReasoningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7EDF2236EEF0AB908E7494 /* ReasoningView.swift */; };
+		6860D2A6CC58896DF2F19E55 /* ChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49DDAAD8A989F6509DA250F /* ChallengeData.swift */; };
 		6C518A66BAE2CFA5C9E05166 /* GeneticsDuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFEB48CF01A35A75B47BA82 /* GeneticsDuelView.swift */; };
+		71FF5B29F874106C925B27D7 /* GraphAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DB54CEF0A51BEF6FF0710 /* GraphAnalysisView.swift */; };
+		79EBE163B31C5235BB5B8187 /* ConceptMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA091A7A3FF03600AF69495 /* ConceptMapView.swift */; };
 		7BDA04D46294608FBCE5C2FE /* OrganelleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049FE62DC406E56CE425D4D7 /* OrganelleData.swift */; };
 		7FE55AC17A136A0AFE58C23D /* SyllabusData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E93F376FA2DAC6C98BF66D /* SyllabusData.swift */; };
+		8DC032A07271A6D58C257181 /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B01A8A68F2927596510628 /* ChallengeView.swift */; };
 		8FEF31AE802BCC9BB3625F8B /* ProcessData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2091E0E848811AF6C6B032 /* ProcessData.swift */; };
+		90ACA2E8E49BDA245A355532 /* WeaponModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC88064C5F002B5C047271F4 /* WeaponModels.swift */; };
 		929CB459F1A4439540986233 /* FeedbackSimulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E905752205701E6A22E1F /* FeedbackSimulatorView.swift */; };
 		9CFD643B2A14DA05849EAF91 /* SeeLifeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E30AA6A2256CAFF6C7642 /* SeeLifeView.swift */; };
 		9E42841B3934B01FF294EF22 /* InquiryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C908E6A36A6D814BC11034 /* InquiryData.swift */; };
@@ -33,11 +40,16 @@
 		A37849E1C80AE36C298EC893 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F48AC4109836B285E8CE05 /* QuestionData.swift */; };
 		A4E7C09BF1B76BFF48406B5D /* ReasoningModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3480D4F2D242EF20F01F364 /* ReasoningModels.swift */; };
 		A78789539B50287AF91DF319 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE837FFC089960FCD86063 /* QuestionManager.swift */; };
+		B2EDD41627E3D493E1B9473B /* ShortAnswerDrillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAC7482DB7EFD94B2E0A115 /* ShortAnswerDrillView.swift */; };
 		B6D3E82E548448249C9906A4 /* MasteryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA7B71D93EBE3E8F1CFDE2 /* MasteryManager.swift */; };
 		B7676C2D0F9B17A168C6956E /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC992C38035A9D4CCD92C937 /* ThemeColors.swift */; };
+		BF4312193754EF5B38269FE0 /* ConceptData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754CDD8E666503C1479AC703 /* ConceptData.swift */; };
 		C3C0BA25D7C761FF4B701AFA /* ProcessTheaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C831104CE5D4AD9BC82229 /* ProcessTheaterView.swift */; };
+		C6DEFB4E78D8A8DA6CE56810 /* WeaponData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2805CED4245E47001CE1D72F /* WeaponData.swift */; };
 		CB1EE915835D73480B7AF71B /* LoreViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF56C25958FFA9FAD84E5C /* LoreViews.swift */; };
 		CEC4BC60372E566A01935661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132604505D8C1B5D179A3BD2 /* Assets.xcassets */; };
+		D0022207457C88F6091E312A /* ChallengeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE73C66333B2C4A40E0C8BB7 /* ChallengeModels.swift */; };
+		D4F9A39B5D0F0C3AFA17A0F4 /* WeaponLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ABD9E00C06DE888A45002A /* WeaponLibraryView.swift */; };
 		D5CD3CA9E878F64BBD307FB9 /* ScaleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382145FE055927A8A015F410 /* ScaleData.swift */; };
 		D5FAD41CE4EA600607C47EAF /* PedigreeDetectiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2062D62D720D863E217E7F8 /* PedigreeDetectiveView.swift */; };
 		E689281AD00532A91BC556B5 /* InquiryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BF83330063642C13DA6B6 /* InquiryModels.swift */; };
@@ -70,16 +82,23 @@
 		15024685AED6BB2DBAEB7C94 /* BioApexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioApexTests.swift; sourceTree = "<group>"; };
 		1B34CC83A4BC65E90D9FDB72 /* GeneticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticsData.swift; sourceTree = "<group>"; };
 		26A00B454843279EF00557A6 /* InquiryLabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryLabView.swift; sourceTree = "<group>"; };
+		2805CED4245E47001CE1D72F /* WeaponData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponData.swift; sourceTree = "<group>"; };
+		2B9DB54CEF0A51BEF6FF0710 /* GraphAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAnalysisView.swift; sourceTree = "<group>"; };
 		2D56C4DFEB06AFF688E02684 /* BioApexTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BioApexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E086FC0E8143CD68FBC8771 /* HomeostasisData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeostasisData.swift; sourceTree = "<group>"; };
 		378E905752205701E6A22E1F /* FeedbackSimulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSimulatorView.swift; sourceTree = "<group>"; };
 		382145FE055927A8A015F410 /* ScaleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleData.swift; sourceTree = "<group>"; };
 		3B863C016A0C1F4EE1F060E0 /* ReviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModels.swift; sourceTree = "<group>"; };
 		3BF5B5AE92B56F95BC247497 /* BioModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioModels.swift; sourceTree = "<group>"; };
+		3E9C2C3BD9278F9F21104F1C /* GraphData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphData.swift; sourceTree = "<group>"; };
 		442659DA3FA77ED86896E25F /* SeeLifeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeLifeModels.swift; sourceTree = "<group>"; };
 		48CA70004E92563E72B6CC47 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		4CA091A7A3FF03600AF69495 /* ConceptMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptMapView.swift; sourceTree = "<group>"; };
+		4DAC7482DB7EFD94B2E0A115 /* ShortAnswerDrillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortAnswerDrillView.swift; sourceTree = "<group>"; };
+		52ABD9E00C06DE888A45002A /* WeaponLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponLibraryView.swift; sourceTree = "<group>"; };
 		55D30806D3AE64A50241753A /* PromoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoView.swift; sourceTree = "<group>"; };
 		6ABA12EF7E880B12C839DA79 /* MoreFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreFeatures.swift; sourceTree = "<group>"; };
+		754CDD8E666503C1479AC703 /* ConceptData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConceptData.swift; sourceTree = "<group>"; };
 		7E674E1D33839F28ADB95733 /* MasteryMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryMapView.swift; sourceTree = "<group>"; };
 		85A5768B8BA3900933BDDA9C /* PracticeViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViews.swift; sourceTree = "<group>"; };
 		8729CDF4FC4C46C3E41B80CF /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
@@ -87,6 +106,7 @@
 		8AFEB48CF01A35A75B47BA82 /* GeneticsDuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticsDuelView.swift; sourceTree = "<group>"; };
 		8BEE837FFC089960FCD86063 /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
 		8C7EDF2236EEF0AB908E7494 /* ReasoningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasoningView.swift; sourceTree = "<group>"; };
+		92B01A8A68F2927596510628 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
 		9B2091E0E848811AF6C6B032 /* ProcessData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessData.swift; sourceTree = "<group>"; };
 		9E122539BB0973572B9042B0 /* BioApexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioApexApp.swift; sourceTree = "<group>"; };
 		A2062D62D720D863E217E7F8 /* PedigreeDetectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedigreeDetectiveView.swift; sourceTree = "<group>"; };
@@ -95,6 +115,8 @@
 		BFDF425AE41EAECF363BE133 /* QuestionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModels.swift; sourceTree = "<group>"; };
 		C3480D4F2D242EF20F01F364 /* ReasoningModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasoningModels.swift; sourceTree = "<group>"; };
 		C47BF83330063642C13DA6B6 /* InquiryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryModels.swift; sourceTree = "<group>"; };
+		CB66EBFC56E02A75642CBAAD /* GraphModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphModels.swift; sourceTree = "<group>"; };
+		CE73C66333B2C4A40E0C8BB7 /* ChallengeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModels.swift; sourceTree = "<group>"; };
 		CE7E37C55D983CCDB7D67B8E /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		D7E93F376FA2DAC6C98BF66D /* SyllabusData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusData.swift; sourceTree = "<group>"; };
 		DA58EA12639D4FA92A8BA3DA /* GiantsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiantsData.swift; sourceTree = "<group>"; };
@@ -102,9 +124,11 @@
 		E83DE094CC9962D2A3300D3D /* CellAtlasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAtlasView.swift; sourceTree = "<group>"; };
 		E86E23A7F784919599943797 /* LoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoreData.swift; sourceTree = "<group>"; };
 		E8DA7B71D93EBE3E8F1CFDE2 /* MasteryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryManager.swift; sourceTree = "<group>"; };
+		EC88064C5F002B5C047271F4 /* WeaponModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponModels.swift; sourceTree = "<group>"; };
 		F037B111DCF7743C63E9CDAC /* KnowledgePointDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgePointDetailView.swift; sourceTree = "<group>"; };
 		F1F48AC4109836B285E8CE05 /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
 		F1F9D434945B01F50F6A5EA4 /* BioApex.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BioApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F49DDAAD8A989F6509DA250F /* ChallengeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeData.swift; sourceTree = "<group>"; };
 		F66E30AA6A2256CAFF6C7642 /* SeeLifeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeLifeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,9 +136,12 @@
 		01F105FA13FEFEC683529790 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				F49DDAAD8A989F6509DA250F /* ChallengeData.swift */,
+				754CDD8E666503C1479AC703 /* ConceptData.swift */,
 				12F9A3A2B32767036189227B /* ConfusionData.swift */,
 				1B34CC83A4BC65E90D9FDB72 /* GeneticsData.swift */,
 				DA58EA12639D4FA92A8BA3DA /* GiantsData.swift */,
+				3E9C2C3BD9278F9F21104F1C /* GraphData.swift */,
 				2E086FC0E8143CD68FBC8771 /* HomeostasisData.swift */,
 				89C908E6A36A6D814BC11034 /* InquiryData.swift */,
 				E86E23A7F784919599943797 /* LoreData.swift */,
@@ -127,6 +154,7 @@
 				E1AF1FD99EF824E93E0BD572 /* ReviewScheduler.swift */,
 				382145FE055927A8A015F410 /* ScaleData.swift */,
 				D7E93F376FA2DAC6C98BF66D /* SyllabusData.swift */,
+				2805CED4245E47001CE1D72F /* WeaponData.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -135,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				E83DE094CC9962D2A3300D3D /* CellAtlasView.swift */,
+				4CA091A7A3FF03600AF69495 /* ConceptMapView.swift */,
 				02123D90957C0BE525588B77 /* LifeScaleView.swift */,
 				14C831104CE5D4AD9BC82229 /* ProcessTheaterView.swift */,
 				F66E30AA6A2256CAFF6C7642 /* SeeLifeView.swift */,
@@ -230,11 +259,14 @@
 			isa = PBXGroup;
 			children = (
 				3BF5B5AE92B56F95BC247497 /* BioModels.swift */,
+				CE73C66333B2C4A40E0C8BB7 /* ChallengeModels.swift */,
+				CB66EBFC56E02A75642CBAAD /* GraphModels.swift */,
 				C47BF83330063642C13DA6B6 /* InquiryModels.swift */,
 				BFDF425AE41EAECF363BE133 /* QuestionModels.swift */,
 				C3480D4F2D242EF20F01F364 /* ReasoningModels.swift */,
 				3B863C016A0C1F4EE1F060E0 /* ReviewModels.swift */,
 				442659DA3FA77ED86896E25F /* SeeLifeModels.swift */,
+				EC88064C5F002B5C047271F4 /* WeaponModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -261,11 +293,15 @@
 		BE7B1EA29D38626CD8EB7151 /* Reasoning */ = {
 			isa = PBXGroup;
 			children = (
+				92B01A8A68F2927596510628 /* ChallengeView.swift */,
 				378E905752205701E6A22E1F /* FeedbackSimulatorView.swift */,
 				8AFEB48CF01A35A75B47BA82 /* GeneticsDuelView.swift */,
+				2B9DB54CEF0A51BEF6FF0710 /* GraphAnalysisView.swift */,
 				26A00B454843279EF00557A6 /* InquiryLabView.swift */,
 				A2062D62D720D863E217E7F8 /* PedigreeDetectiveView.swift */,
 				8C7EDF2236EEF0AB908E7494 /* ReasoningView.swift */,
+				4DAC7482DB7EFD94B2E0A115 /* ShortAnswerDrillView.swift */,
+				52ABD9E00C06DE888A45002A /* WeaponLibraryView.swift */,
 			);
 			path = Reasoning;
 			sourceTree = "<group>";
@@ -384,12 +420,20 @@
 				A30456BE0FFEE23F103FB920 /* BioApexApp.swift in Sources */,
 				4779E16F8CCF090B3F1B90CB /* BioModels.swift in Sources */,
 				5DAA8CD018C50481DB37109A /* CellAtlasView.swift in Sources */,
+				6860D2A6CC58896DF2F19E55 /* ChallengeData.swift in Sources */,
+				D0022207457C88F6091E312A /* ChallengeModels.swift in Sources */,
+				8DC032A07271A6D58C257181 /* ChallengeView.swift in Sources */,
+				BF4312193754EF5B38269FE0 /* ConceptData.swift in Sources */,
+				79EBE163B31C5235BB5B8187 /* ConceptMapView.swift in Sources */,
 				4D36BBA6D7E44EDD98CEC2DA /* ConfusionData.swift in Sources */,
 				F97F4C4DB38FD217608CA56B /* DesignSystem.swift in Sources */,
 				929CB459F1A4439540986233 /* FeedbackSimulatorView.swift in Sources */,
 				651B1379D001667CC66A33AD /* GeneticsData.swift in Sources */,
 				6C518A66BAE2CFA5C9E05166 /* GeneticsDuelView.swift in Sources */,
 				637B286D6CFC98303D6B4E2C /* GiantsData.swift in Sources */,
+				71FF5B29F874106C925B27D7 /* GraphAnalysisView.swift in Sources */,
+				207AFD6177CE4A5B1C02D60E /* GraphData.swift in Sources */,
+				1191D91860B89ED78EB5CF93 /* GraphModels.swift in Sources */,
 				3561350306F66D8C0A185532 /* HomeostasisData.swift in Sources */,
 				9E42841B3934B01FF294EF22 /* InquiryData.swift in Sources */,
 				FEEDC97213BFFC0D5257CA35 /* InquiryLabView.swift in Sources */,
@@ -419,8 +463,12 @@
 				D5CD3CA9E878F64BBD307FB9 /* ScaleData.swift in Sources */,
 				4F9C45FEDA88919A289FD597 /* SeeLifeModels.swift in Sources */,
 				9CFD643B2A14DA05849EAF91 /* SeeLifeView.swift in Sources */,
+				B2EDD41627E3D493E1B9473B /* ShortAnswerDrillView.swift in Sources */,
 				7FE55AC17A136A0AFE58C23D /* SyllabusData.swift in Sources */,
 				B7676C2D0F9B17A168C6956E /* ThemeColors.swift in Sources */,
+				C6DEFB4E78D8A8DA6CE56810 /* WeaponData.swift in Sources */,
+				D4F9A39B5D0F0C3AFA17A0F4 /* WeaponLibraryView.swift in Sources */,
+				90ACA2E8E49BDA245A355532 /* WeaponModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

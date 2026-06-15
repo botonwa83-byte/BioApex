@@ -233,11 +233,13 @@ struct MistakeBookView: View {
 
 struct DiagnosisView: View {
     @ObservedObject private var mastery = MasteryManager.shared
+    @ObservedObject private var mistakes = MistakeManager.shared
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.lg) {
                 overall
+                errorCategories
                 SectionHeader(title: "各模块掌握度（弱在前）", systemImage: "chart.bar.xaxis", accent: .bioBlue)
                 ForEach(sortedModules(), id: \.self) { m in moduleRow(m) }
             }
@@ -245,6 +247,27 @@ struct DiagnosisView: View {
         }
         .background(Color.bioBackground.ignoresSafeArea())
         .navigationTitle("学情诊断").navigationBarTitleDisplayMode(.inline)
+    }
+
+    // 错因归类（架子：先按来源分两类，后续可细分概念混淆/术语/图表/计算）
+    private var errorCategories: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader(title: "错因归类", systemImage: "exclamationmark.bubble", accent: .bioDanger)
+            errorRow("概念混淆（辨析答错）", mistakes.wrongConfusion.count, .bioPurple)
+            errorRow("知识薄弱（已标记）", mistakes.weakPoints.count, .bioDanger)
+            Text("点「错题本」可逐条重学；后续会细分术语不规范、图表误读、计算失误等。")
+                .font(.caption2).foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading).cardSurface(padding: Spacing.lg)
+    }
+
+    private func errorRow(_ label: String, _ count: Int, _ color: Color) -> some View {
+        HStack {
+            Circle().fill(color).frame(width: 8, height: 8)
+            Text(label).font(.subheadline)
+            Spacer()
+            Text("\(count)").font(AppFont.cardTitle).foregroundColor(count > 0 ? color : .secondary)
+        }
     }
 
     private func sortedModules() -> [BioModule] {

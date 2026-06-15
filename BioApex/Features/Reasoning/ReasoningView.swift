@@ -10,8 +10,16 @@ struct ReasoningView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: Spacing.lg) {
-                    Text("生物里唯一的强逻辑+强计算——把遗传和实验做成游戏。")
+                    Text("先进武器库学方法，再用破题之眼看它怎么破压轴题。")
                         .font(.caption).foregroundColor(.secondary)
+
+                    // 旗舰:武器库(教方法,免费) + 破题之眼(压轴竞赛巧解,内部前2题免费)
+                    entry(icon: "shield.lefthalf.filled", color: .bioGreen,
+                          title: "解题武器库",
+                          subtitle: "\(WeaponData.all.count) 把武器：何时用·怎么用·破压轴", locked: false) { WeaponLibraryView() }
+                    entry(icon: "eye.trianglebadge.exclamationmark", color: .bioGold,
+                          title: "破题之眼 · 压轴竞赛巧解",
+                          subtitle: "高考压轴 × 生物竞赛，一招识局巧解", locked: false) { ChallengeView() }
 
                     // 遗传神探:内部按案件分免费/付费(前 2 案免费)
                     entry(icon: "magnifyingglass", color: .bioPurple,
@@ -27,6 +35,12 @@ struct ReasoningView: View {
                     entry(icon: "arrow.triangle.2.circlepath", color: .bioTeal,
                           title: "稳态回路模拟器",
                           subtitle: "拨动血糖/体温，看负反馈如何回拉", locked: !purchase.isUnlocked) { FeedbackSimulatorView() }
+                    entry(icon: "chart.xyaxis.line", color: .bioBlue,
+                          title: "图表曲线分析",
+                          subtitle: "三看：看轴→看点→看拐点，攻坐标题", locked: false) { GraphAnalysisView() }
+                    entry(icon: "text.append", color: .bioGreen,
+                          title: "简答采分训练",
+                          subtitle: "会做但答不到点？逐条对照采分点", locked: false) { ShortAnswerDrillView() }
                 }
                 .padding(Spacing.lg)
                 .readableWidth()

@@ -18,6 +18,7 @@ final class PurchaseManager: ObservableObject {
     /// 免费档数量（改动需同步 BioApexTests.testFreeTierPolicy）。
     static let freeProcessCount = 4    // 过程剧场前 4 个免费
     static let freeDetectiveCount = 2  // 遗传神探前 2 案免费
+    static let freeChallengeCount = 2  // 破题之眼前 2 题免费试看
 
     @Published private(set) var isUnlocked = false
     @Published private(set) var product: Product?
@@ -55,6 +56,11 @@ final class PurchaseManager: ObservableObject {
     func isDetectivePremiumLocked(index: Int) -> Bool {
         guard !isUnlocked else { return false }
         return index >= Self.freeDetectiveCount
+    }
+
+    func isChallengePremiumLocked(index: Int) -> Bool {
+        guard !isUnlocked else { return false }
+        return index >= Self.freeChallengeCount
     }
 
     // MARK: StoreKit

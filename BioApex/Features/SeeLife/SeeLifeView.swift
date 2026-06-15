@@ -21,6 +21,10 @@ struct SeeLifeView: View {
                               title: "生命的尺度", subtitle: "从生物大分子到生物圈，一镜到底") {
                         LifeScaleView()
                     }
+                    entryCard(icon: "point.3.connected.trianglepath.dotted", color: .bioPurple,
+                              title: "概念关联网", subtitle: "按生命观念把考点串成网") {
+                        ConceptMapView()
+                    }
 
                     SectionHeader(title: "过程剧场", systemImage: "play.square.stack", accent: .bioTeal)
                     ForEach(Array(ProcessData.all.enumerated()), id: \.element.id) { index, scene in

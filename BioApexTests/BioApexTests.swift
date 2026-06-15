@@ -103,6 +103,56 @@ final class BioApexTests: XCTestCase {
         XCTAssertFalse(QuestionData.all.isEmpty)
     }
 
+    /// 图表曲线（P11）：ID 唯一、读图要点≥2、quiz 答案合法。
+    func testGraphData() {
+        let ids = GraphData.all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "图表 ID 重复")
+        for g in GraphData.all {
+            XCTAssertGreaterThanOrEqual(g.readingPoints.count, 2, "图表 \(g.id) 读图要点太少")
+            XCTAssertTrue(g.quiz.options.indices.contains(g.quiz.answerIndex), "图表 \(g.id) quiz 答案越界")
+            XCTAssertFalse(g.quiz.explanation.isEmpty)
+        }
+    }
+
+    /// 概念关联网（P11）：每个生命观念都有关联考点，且 id 真实存在。
+    func testConceptMap() {
+        let kpIds = Set(SyllabusData.all.map(\.id))
+        for c in LifeConcept.allCases {
+            let pts = ConceptData.map[c] ?? []
+            XCTAssertFalse(pts.isEmpty, "生命观念 \(c.title) 没有关联考点")
+            for id in pts { XCTAssertTrue(kpIds.contains(id), "概念网引用了不存在的考点 \(id)") }
+        }
+    }
+
+    /// 武器库：每把武器都有教学，识局信号与步骤非空，例题 id 合法。
+    func testWeaponLibrary() {
+        let taught = Set(WeaponData.all.map(\.weapon))
+        for w in BioWeapon.allCases {
+            XCTAssertTrue(taught.contains(w), "武器 \(w.name) 缺教学")
+        }
+        let challengeIds = Set(ChallengeData.all.map(\.id))
+        for g in WeaponData.all {
+            XCTAssertFalse(g.whenToUse.isEmpty, "武器 \(g.weapon.name) 缺识局信号")
+            XCTAssertFalse(g.steps.isEmpty, "武器 \(g.weapon.name) 缺步骤")
+            if let ex = g.exampleChallengeId {
+                XCTAssertTrue(challengeIds.contains(ex), "武器 \(g.weapon.name) 例题 \(ex) 不存在")
+            }
+        }
+    }
+
+    /// 破题之眼：ID 唯一、步骤/答案/迁移非空、难度 1–5；免费档不超总数。
+    func testChallengeData() {
+        let ids = ChallengeData.all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "压轴题 ID 重复")
+        for p in ChallengeData.all {
+            XCTAssertFalse(p.content.isEmpty); XCTAssertFalse(p.keyInsight.isEmpty)
+            XCTAssertFalse(p.steps.isEmpty); XCTAssertFalse(p.answer.isEmpty)
+            XCTAssertFalse(p.takeaway.isEmpty, "题 \(p.id) 缺方法迁移")
+            XCTAssertTrue((1...5).contains(p.difficulty))
+        }
+        XCTAssertLessThanOrEqual(PurchaseManager.freeChallengeCount, ChallengeData.all.count)
+    }
+
     /// 每个教材模块都要有考点（不能空模块）。
     func testEveryModuleHasPoints() {
         for m in BioModule.allCases {
