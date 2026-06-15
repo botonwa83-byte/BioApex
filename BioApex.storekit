@@ -1,0 +1,41 @@
+{
+  "identifier" : "9BD39DF1-2664-4102-96C6-ED8BF9C10D24",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "22.00",
+      "familyShareable" : false,
+      "internalID" : "08801880-5780-45AE-8D98-ED1FC5D9B4E4",
+      "localizations" : [
+        {
+          "description" : "一次买断,解锁高中必修2与选择性必修全部考点、全部过程剧场、遗传神探/秒算、稳态回路与探究实验台。无订阅、无续费,支持换机恢复购买。",
+          "displayName" : "完整版解锁",
+          "locale" : "zh_CN"
+        }
+      ],
+      "productID" : "com.bioapex.app.full_unlock",
+      "referenceName" : "BioApex Full Unlock",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "0",
+    "_developerTeamID" : "0",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 0,
+    "_locale" : "zh_CN",
+    "_storefront" : "CHN",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

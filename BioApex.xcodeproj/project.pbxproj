@@ -1,0 +1,664 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07035842AC9D6019A07185B3 /* MoreFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA12EF7E880B12C839DA79 /* MoreFeatures.swift */; };
+		21122D2DBDAF4FD922B10153 /* MasteryMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E674E1D33839F28ADB95733 /* MasteryMapView.swift */; };
+		3561350306F66D8C0A185532 /* HomeostasisData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E086FC0E8143CD68FBC8771 /* HomeostasisData.swift */; };
+		4779E16F8CCF090B3F1B90CB /* BioModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5B5AE92B56F95BC247497 /* BioModels.swift */; };
+		4D36BBA6D7E44EDD98CEC2DA /* ConfusionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9A3A2B32767036189227B /* ConfusionData.swift */; };
+		4F9C45FEDA88919A289FD597 /* SeeLifeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442659DA3FA77ED86896E25F /* SeeLifeModels.swift */; };
+		5031F67352E252F63B344F2B /* ReviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B863C016A0C1F4EE1F060E0 /* ReviewModels.swift */; };
+		5408D38D472A713480B84622 /* KnowledgePointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F037B111DCF7743C63E9CDAC /* KnowledgePointDetailView.swift */; };
+		5A185599D78499A7ADF556FF /* BioApexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15024685AED6BB2DBAEB7C94 /* BioApexTests.swift */; };
+		5DAA8CD018C50481DB37109A /* CellAtlasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83DE094CC9962D2A3300D3D /* CellAtlasView.swift */; };
+		61AB1D6D473EB3812A18D984 /* PromoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D30806D3AE64A50241753A /* PromoView.swift */; };
+		637B286D6CFC98303D6B4E2C /* GiantsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58EA12639D4FA92A8BA3DA /* GiantsData.swift */; };
+		651B1379D001667CC66A33AD /* GeneticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B34CC83A4BC65E90D9FDB72 /* GeneticsData.swift */; };
+		65E06F503EEBB6942E50A1A0 /* ReasoningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7EDF2236EEF0AB908E7494 /* ReasoningView.swift */; };
+		6C518A66BAE2CFA5C9E05166 /* GeneticsDuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFEB48CF01A35A75B47BA82 /* GeneticsDuelView.swift */; };
+		7BDA04D46294608FBCE5C2FE /* OrganelleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049FE62DC406E56CE425D4D7 /* OrganelleData.swift */; };
+		7FE55AC17A136A0AFE58C23D /* SyllabusData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E93F376FA2DAC6C98BF66D /* SyllabusData.swift */; };
+		8FEF31AE802BCC9BB3625F8B /* ProcessData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2091E0E848811AF6C6B032 /* ProcessData.swift */; };
+		929CB459F1A4439540986233 /* FeedbackSimulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E905752205701E6A22E1F /* FeedbackSimulatorView.swift */; };
+		9CFD643B2A14DA05849EAF91 /* SeeLifeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E30AA6A2256CAFF6C7642 /* SeeLifeView.swift */; };
+		9E42841B3934B01FF294EF22 /* InquiryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C908E6A36A6D814BC11034 /* InquiryData.swift */; };
+		A016EC5CB971C91214C0D057 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729CDF4FC4C46C3E41B80CF /* PurchaseManager.swift */; };
+		A30456BE0FFEE23F103FB920 /* BioApexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E122539BB0973572B9042B0 /* BioApexApp.swift */; };
+		A4E7C09BF1B76BFF48406B5D /* ReasoningModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3480D4F2D242EF20F01F364 /* ReasoningModels.swift */; };
+		B6D3E82E548448249C9906A4 /* MasteryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA7B71D93EBE3E8F1CFDE2 /* MasteryManager.swift */; };
+		B7676C2D0F9B17A168C6956E /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC992C38035A9D4CCD92C937 /* ThemeColors.swift */; };
+		C3C0BA25D7C761FF4B701AFA /* ProcessTheaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C831104CE5D4AD9BC82229 /* ProcessTheaterView.swift */; };
+		CB1EE915835D73480B7AF71B /* LoreViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFF56C25958FFA9FAD84E5C /* LoreViews.swift */; };
+		CEC4BC60372E566A01935661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132604505D8C1B5D179A3BD2 /* Assets.xcassets */; };
+		D5CD3CA9E878F64BBD307FB9 /* ScaleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382145FE055927A8A015F410 /* ScaleData.swift */; };
+		D5FAD41CE4EA600607C47EAF /* PedigreeDetectiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2062D62D720D863E217E7F8 /* PedigreeDetectiveView.swift */; };
+		E689281AD00532A91BC556B5 /* InquiryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47BF83330063642C13DA6B6 /* InquiryModels.swift */; };
+		E7BCCCCF9423B8D35DDEB324 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E37C55D983CCDB7D67B8E /* PaywallView.swift */; };
+		F3D70652191AE57F849B2D3D /* LifeScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02123D90957C0BE525588B77 /* LifeScaleView.swift */; };
+		F75918C1DBA3F915C51ECD84 /* ReviewScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF1FD99EF824E93E0BD572 /* ReviewScheduler.swift */; };
+		F89085C55502F1DA379D6607 /* LoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E23A7F784919599943797 /* LoreData.swift */; };
+		F97F4C4DB38FD217608CA56B /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CA70004E92563E72B6CC47 /* DesignSystem.swift */; };
+		FEEDC97213BFFC0D5257CA35 /* InquiryLabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A00B454843279EF00557A6 /* InquiryLabView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FDCB83AC69D8EB354C5C189F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 898D080981C4F704F6E0D7BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD0FAED48CD92B8DD2CE3D16;
+			remoteInfo = BioApex;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02123D90957C0BE525588B77 /* LifeScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeScaleView.swift; sourceTree = "<group>"; };
+		049FE62DC406E56CE425D4D7 /* OrganelleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganelleData.swift; sourceTree = "<group>"; };
+		12F9A3A2B32767036189227B /* ConfusionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfusionData.swift; sourceTree = "<group>"; };
+		132604505D8C1B5D179A3BD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		14C831104CE5D4AD9BC82229 /* ProcessTheaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessTheaterView.swift; sourceTree = "<group>"; };
+		15024685AED6BB2DBAEB7C94 /* BioApexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioApexTests.swift; sourceTree = "<group>"; };
+		1B34CC83A4BC65E90D9FDB72 /* GeneticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticsData.swift; sourceTree = "<group>"; };
+		26A00B454843279EF00557A6 /* InquiryLabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryLabView.swift; sourceTree = "<group>"; };
+		2D56C4DFEB06AFF688E02684 /* BioApexTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BioApexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E086FC0E8143CD68FBC8771 /* HomeostasisData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeostasisData.swift; sourceTree = "<group>"; };
+		378E905752205701E6A22E1F /* FeedbackSimulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSimulatorView.swift; sourceTree = "<group>"; };
+		382145FE055927A8A015F410 /* ScaleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleData.swift; sourceTree = "<group>"; };
+		3B863C016A0C1F4EE1F060E0 /* ReviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModels.swift; sourceTree = "<group>"; };
+		3BF5B5AE92B56F95BC247497 /* BioModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioModels.swift; sourceTree = "<group>"; };
+		442659DA3FA77ED86896E25F /* SeeLifeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeLifeModels.swift; sourceTree = "<group>"; };
+		48CA70004E92563E72B6CC47 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		55D30806D3AE64A50241753A /* PromoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoView.swift; sourceTree = "<group>"; };
+		6ABA12EF7E880B12C839DA79 /* MoreFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreFeatures.swift; sourceTree = "<group>"; };
+		7E674E1D33839F28ADB95733 /* MasteryMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryMapView.swift; sourceTree = "<group>"; };
+		8729CDF4FC4C46C3E41B80CF /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
+		89C908E6A36A6D814BC11034 /* InquiryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryData.swift; sourceTree = "<group>"; };
+		8AFEB48CF01A35A75B47BA82 /* GeneticsDuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticsDuelView.swift; sourceTree = "<group>"; };
+		8C7EDF2236EEF0AB908E7494 /* ReasoningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasoningView.swift; sourceTree = "<group>"; };
+		9B2091E0E848811AF6C6B032 /* ProcessData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessData.swift; sourceTree = "<group>"; };
+		9E122539BB0973572B9042B0 /* BioApexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioApexApp.swift; sourceTree = "<group>"; };
+		A2062D62D720D863E217E7F8 /* PedigreeDetectiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedigreeDetectiveView.swift; sourceTree = "<group>"; };
+		BAFF56C25958FFA9FAD84E5C /* LoreViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoreViews.swift; sourceTree = "<group>"; };
+		BC992C38035A9D4CCD92C937 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		C3480D4F2D242EF20F01F364 /* ReasoningModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasoningModels.swift; sourceTree = "<group>"; };
+		C47BF83330063642C13DA6B6 /* InquiryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryModels.swift; sourceTree = "<group>"; };
+		CE7E37C55D983CCDB7D67B8E /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		D7E93F376FA2DAC6C98BF66D /* SyllabusData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusData.swift; sourceTree = "<group>"; };
+		DA58EA12639D4FA92A8BA3DA /* GiantsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiantsData.swift; sourceTree = "<group>"; };
+		E1AF1FD99EF824E93E0BD572 /* ReviewScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewScheduler.swift; sourceTree = "<group>"; };
+		E83DE094CC9962D2A3300D3D /* CellAtlasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAtlasView.swift; sourceTree = "<group>"; };
+		E86E23A7F784919599943797 /* LoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoreData.swift; sourceTree = "<group>"; };
+		E8DA7B71D93EBE3E8F1CFDE2 /* MasteryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryManager.swift; sourceTree = "<group>"; };
+		F037B111DCF7743C63E9CDAC /* KnowledgePointDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgePointDetailView.swift; sourceTree = "<group>"; };
+		F1F9D434945B01F50F6A5EA4 /* BioApex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BioApex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F66E30AA6A2256CAFF6C7642 /* SeeLifeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeLifeView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		01F105FA13FEFEC683529790 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				12F9A3A2B32767036189227B /* ConfusionData.swift */,
+				1B34CC83A4BC65E90D9FDB72 /* GeneticsData.swift */,
+				DA58EA12639D4FA92A8BA3DA /* GiantsData.swift */,
+				2E086FC0E8143CD68FBC8771 /* HomeostasisData.swift */,
+				89C908E6A36A6D814BC11034 /* InquiryData.swift */,
+				E86E23A7F784919599943797 /* LoreData.swift */,
+				E8DA7B71D93EBE3E8F1CFDE2 /* MasteryManager.swift */,
+				049FE62DC406E56CE425D4D7 /* OrganelleData.swift */,
+				9B2091E0E848811AF6C6B032 /* ProcessData.swift */,
+				8729CDF4FC4C46C3E41B80CF /* PurchaseManager.swift */,
+				E1AF1FD99EF824E93E0BD572 /* ReviewScheduler.swift */,
+				382145FE055927A8A015F410 /* ScaleData.swift */,
+				D7E93F376FA2DAC6C98BF66D /* SyllabusData.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		0730551BC38D882EF791158F /* SeeLife */ = {
+			isa = PBXGroup;
+			children = (
+				E83DE094CC9962D2A3300D3D /* CellAtlasView.swift */,
+				02123D90957C0BE525588B77 /* LifeScaleView.swift */,
+				14C831104CE5D4AD9BC82229 /* ProcessTheaterView.swift */,
+				F66E30AA6A2256CAFF6C7642 /* SeeLifeView.swift */,
+			);
+			path = SeeLife;
+			sourceTree = "<group>";
+		};
+		119A64092384127582FDD226 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9E122539BB0973572B9042B0 /* BioApexApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2B80D6E915C066C98A6929FD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				132604505D8C1B5D179A3BD2 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		41815FA33B0015B62AD618C1 = {
+			isa = PBXGroup;
+			children = (
+				603685017563BD5F97481C06 /* BioApex */,
+				C6499BAD9DA456B47D57574C /* BioApexTests */,
+				F94C34F71A2E01C745F65902 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52FC3210F7BF190466753C49 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				B0761D4D3FFD1618D6FD382E /* MasteryMap */,
+				A2292B993E2D167838291D75 /* More */,
+				56B58FE532B246B19F0D3F97 /* Onboarding */,
+				6AB443A40BFF7618C519B6A4 /* Paywall */,
+				BE7B1EA29D38626CD8EB7151 /* Reasoning */,
+				0730551BC38D882EF791158F /* SeeLife */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		56B58FE532B246B19F0D3F97 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				55D30806D3AE64A50241753A /* PromoView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		5AD88EB3929727D8DF7B68DA /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				48CA70004E92563E72B6CC47 /* DesignSystem.swift */,
+				BC992C38035A9D4CCD92C937 /* ThemeColors.swift */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
+		603685017563BD5F97481C06 /* BioApex */ = {
+			isa = PBXGroup;
+			children = (
+				119A64092384127582FDD226 /* App */,
+				668425954A9898BEE85AE014 /* Core */,
+				52FC3210F7BF190466753C49 /* Features */,
+				2B80D6E915C066C98A6929FD /* Resources */,
+			);
+			path = BioApex;
+			sourceTree = "<group>";
+		};
+		668425954A9898BEE85AE014 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				01F105FA13FEFEC683529790 /* Engine */,
+				7B1C8D308B1900B818C79D2E /* Models */,
+				5AD88EB3929727D8DF7B68DA /* Renderer */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		6AB443A40BFF7618C519B6A4 /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				CE7E37C55D983CCDB7D67B8E /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
+		7B1C8D308B1900B818C79D2E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3BF5B5AE92B56F95BC247497 /* BioModels.swift */,
+				C47BF83330063642C13DA6B6 /* InquiryModels.swift */,
+				C3480D4F2D242EF20F01F364 /* ReasoningModels.swift */,
+				3B863C016A0C1F4EE1F060E0 /* ReviewModels.swift */,
+				442659DA3FA77ED86896E25F /* SeeLifeModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A2292B993E2D167838291D75 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				BAFF56C25958FFA9FAD84E5C /* LoreViews.swift */,
+				6ABA12EF7E880B12C839DA79 /* MoreFeatures.swift */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		B0761D4D3FFD1618D6FD382E /* MasteryMap */ = {
+			isa = PBXGroup;
+			children = (
+				F037B111DCF7743C63E9CDAC /* KnowledgePointDetailView.swift */,
+				7E674E1D33839F28ADB95733 /* MasteryMapView.swift */,
+			);
+			path = MasteryMap;
+			sourceTree = "<group>";
+		};
+		BE7B1EA29D38626CD8EB7151 /* Reasoning */ = {
+			isa = PBXGroup;
+			children = (
+				378E905752205701E6A22E1F /* FeedbackSimulatorView.swift */,
+				8AFEB48CF01A35A75B47BA82 /* GeneticsDuelView.swift */,
+				26A00B454843279EF00557A6 /* InquiryLabView.swift */,
+				A2062D62D720D863E217E7F8 /* PedigreeDetectiveView.swift */,
+				8C7EDF2236EEF0AB908E7494 /* ReasoningView.swift */,
+			);
+			path = Reasoning;
+			sourceTree = "<group>";
+		};
+		C6499BAD9DA456B47D57574C /* BioApexTests */ = {
+			isa = PBXGroup;
+			children = (
+				15024685AED6BB2DBAEB7C94 /* BioApexTests.swift */,
+			);
+			path = BioApexTests;
+			sourceTree = "<group>";
+		};
+		F94C34F71A2E01C745F65902 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1F9D434945B01F50F6A5EA4 /* BioApex.app */,
+				2D56C4DFEB06AFF688E02684 /* BioApexTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		468FA7D39E5B9D9E1188FCFE /* BioApexTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAF9CD294B46A2964CE57F65 /* Build configuration list for PBXNativeTarget "BioApexTests" */;
+			buildPhases = (
+				0E1F084732150E6A1E788681 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				96893BE8BE5C9A1E633E3255 /* PBXTargetDependency */,
+			);
+			name = BioApexTests;
+			packageProductDependencies = (
+			);
+			productName = BioApexTests;
+			productReference = 2D56C4DFEB06AFF688E02684 /* BioApexTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CD0FAED48CD92B8DD2CE3D16 /* BioApex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98047BAE12ED7F64474AB26A /* Build configuration list for PBXNativeTarget "BioApex" */;
+			buildPhases = (
+				6008BD9E133722569241D018 /* Sources */,
+				A903914AF81BAC4DC0DB0110 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BioApex;
+			packageProductDependencies = (
+			);
+			productName = BioApex;
+			productReference = F1F9D434945B01F50F6A5EA4 /* BioApex.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		898D080981C4F704F6E0D7BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 0C2FC8B219372B32148FB22E /* Build configuration list for PBXProject "BioApex" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 41815FA33B0015B62AD618C1;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = F94C34F71A2E01C745F65902 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CD0FAED48CD92B8DD2CE3D16 /* BioApex */,
+				468FA7D39E5B9D9E1188FCFE /* BioApexTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A903914AF81BAC4DC0DB0110 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC4BC60372E566A01935661 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0E1F084732150E6A1E788681 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A185599D78499A7ADF556FF /* BioApexTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6008BD9E133722569241D018 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A30456BE0FFEE23F103FB920 /* BioApexApp.swift in Sources */,
+				4779E16F8CCF090B3F1B90CB /* BioModels.swift in Sources */,
+				5DAA8CD018C50481DB37109A /* CellAtlasView.swift in Sources */,
+				4D36BBA6D7E44EDD98CEC2DA /* ConfusionData.swift in Sources */,
+				F97F4C4DB38FD217608CA56B /* DesignSystem.swift in Sources */,
+				929CB459F1A4439540986233 /* FeedbackSimulatorView.swift in Sources */,
+				651B1379D001667CC66A33AD /* GeneticsData.swift in Sources */,
+				6C518A66BAE2CFA5C9E05166 /* GeneticsDuelView.swift in Sources */,
+				637B286D6CFC98303D6B4E2C /* GiantsData.swift in Sources */,
+				3561350306F66D8C0A185532 /* HomeostasisData.swift in Sources */,
+				9E42841B3934B01FF294EF22 /* InquiryData.swift in Sources */,
+				FEEDC97213BFFC0D5257CA35 /* InquiryLabView.swift in Sources */,
+				E689281AD00532A91BC556B5 /* InquiryModels.swift in Sources */,
+				5408D38D472A713480B84622 /* KnowledgePointDetailView.swift in Sources */,
+				F3D70652191AE57F849B2D3D /* LifeScaleView.swift in Sources */,
+				F89085C55502F1DA379D6607 /* LoreData.swift in Sources */,
+				CB1EE915835D73480B7AF71B /* LoreViews.swift in Sources */,
+				B6D3E82E548448249C9906A4 /* MasteryManager.swift in Sources */,
+				21122D2DBDAF4FD922B10153 /* MasteryMapView.swift in Sources */,
+				07035842AC9D6019A07185B3 /* MoreFeatures.swift in Sources */,
+				7BDA04D46294608FBCE5C2FE /* OrganelleData.swift in Sources */,
+				E7BCCCCF9423B8D35DDEB324 /* PaywallView.swift in Sources */,
+				D5FAD41CE4EA600607C47EAF /* PedigreeDetectiveView.swift in Sources */,
+				8FEF31AE802BCC9BB3625F8B /* ProcessData.swift in Sources */,
+				C3C0BA25D7C761FF4B701AFA /* ProcessTheaterView.swift in Sources */,
+				61AB1D6D473EB3812A18D984 /* PromoView.swift in Sources */,
+				A016EC5CB971C91214C0D057 /* PurchaseManager.swift in Sources */,
+				A4E7C09BF1B76BFF48406B5D /* ReasoningModels.swift in Sources */,
+				65E06F503EEBB6942E50A1A0 /* ReasoningView.swift in Sources */,
+				5031F67352E252F63B344F2B /* ReviewModels.swift in Sources */,
+				F75918C1DBA3F915C51ECD84 /* ReviewScheduler.swift in Sources */,
+				D5CD3CA9E878F64BBD307FB9 /* ScaleData.swift in Sources */,
+				4F9C45FEDA88919A289FD597 /* SeeLifeModels.swift in Sources */,
+				9CFD643B2A14DA05849EAF91 /* SeeLifeView.swift in Sources */,
+				7FE55AC17A136A0AFE58C23D /* SyllabusData.swift in Sources */,
+				B7676C2D0F9B17A168C6956E /* ThemeColors.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		96893BE8BE5C9A1E633E3255 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD0FAED48CD92B8DD2CE3D16 /* BioApex */;
+			targetProxy = FDCB83AC69D8EB354C5C189F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00262E9A603D7EE388E18E71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bioapex.BioApexTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BioApex.app/BioApex";
+			};
+			name = Release;
+		};
+		1FDB039EEA4799AE9A839F4F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_LANGUAGE = "zh-Hans";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2098D461166443383FE10EDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z7F8BY55DS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BioApex;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bioapex.app;
+				PRODUCT_NAME = BioApex;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		21C00C3372C7675BE1C1093C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bioapex.BioApexTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BioApex.app/BioApex";
+			};
+			name = Debug;
+		};
+		7156642545F10ED70BB1C513 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_LANGUAGE = "zh-Hans";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9DF18B13F41F59E47475854D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z7F8BY55DS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BioApex;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bioapex.app;
+				PRODUCT_NAME = BioApex;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C2FC8B219372B32148FB22E /* Build configuration list for PBXProject "BioApex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7156642545F10ED70BB1C513 /* Debug */,
+				1FDB039EEA4799AE9A839F4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		98047BAE12ED7F64474AB26A /* Build configuration list for PBXNativeTarget "BioApex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DF18B13F41F59E47475854D /* Debug */,
+				2098D461166443383FE10EDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DAF9CD294B46A2964CE57F65 /* Build configuration list for PBXNativeTarget "BioApexTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21C00C3372C7675BE1C1093C /* Debug */,
+				00262E9A603D7EE388E18E71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 898D080981C4F704F6E0D7BE /* Project object */;
+}
