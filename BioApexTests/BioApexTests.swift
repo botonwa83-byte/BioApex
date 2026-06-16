@@ -172,7 +172,7 @@ final class BioApexTests: XCTestCase {
         XCTAssertTrue(difficulties.contains(5), "缺少难度 5 的天花板压轴题")
         XCTAssertTrue(difficulties.contains(2), "缺少难度 2 的入门压轴题")
         let olympiad = ChallengeData.all.filter { $0.kind == .olympiad }.count
-        XCTAssertGreaterThanOrEqual(olympiad, 4, "竞赛档压轴题应≥4（拔高钩子）")
+        XCTAssertGreaterThanOrEqual(olympiad, 6, "竞赛档压轴题应≥6（拔高钩子）")
     }
 
     /// 免费钩子策略（广度免费、纵深付费）：每把武器至多 1 道免费、免费样本均为高考且难度≤4、竞赛/难度5 全锁、留有付费纵深。

@@ -55,6 +55,7 @@ struct ChallengeDetailView: View {
     var previewLocked: Bool = false
     @State private var showSolution = false
     @State private var showPaywall = false
+    @State private var selfResult: Bool? = nil
 
     var body: some View {
         ScrollView {
@@ -86,6 +87,7 @@ struct ChallengeDetailView: View {
                     stepsCard
                     answerCard
                     takeawayCard
+                    selfAssessSection
                 }
             }
             .padding(Spacing.lg).readableWidth()
@@ -117,6 +119,48 @@ struct ChallengeDetailView: View {
         .padding(Spacing.lg)
         .background(Color.bioGold.opacity(0.08)).cornerRadius(Radius.card)
         .overlay(RoundedRectangle(cornerRadius: Radius.card).stroke(Color.bioGold.opacity(0.3), lineWidth: 1))
+    }
+
+    // 自评回灌：揭晓巧解后让学生自评；做错则把关联考点加入错题本并排期复习（学—验—记—破闭环）。
+    private var selfAssessSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader(title: "自评 · 我刚才做对了吗", systemImage: "checklist", accent: .bioBlue)
+            if let r = selfResult {
+                HStack(alignment: .top, spacing: 8) {
+                    Image(systemName: r ? "checkmark.seal.fill" : "arrow.uturn.left.circle.fill")
+                        .foregroundColor(r ? .bioGreen : .bioDanger).padding(.top, 2)
+                    Text(r ? "漂亮！这把「\(problem.weapon.name)」你已经会用了。"
+                           : "没关系——已把本题关联的 \(problem.relatedKpIds.count) 个考点加入错题本并排进复习，回头再巩固。")
+                        .font(.subheadline)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(Spacing.lg)
+                .background((r ? Color.bioGreen : Color.bioDanger).opacity(0.1)).cornerRadius(Radius.card)
+            } else {
+                HStack(spacing: Spacing.md) {
+                    Button { assess(true) } label: {
+                        Label("做对了", systemImage: "hand.thumbsup")
+                            .font(AppFont.cardTitle).frame(maxWidth: .infinity).padding(.vertical, 12)
+                            .background(Color.bioGreen.opacity(0.15)).foregroundColor(.bioGreen).cornerRadius(Radius.inner)
+                    }.buttonStyle(.plain)
+                    Button { assess(false) } label: {
+                        Label("做错了", systemImage: "hand.thumbsdown")
+                            .font(AppFont.cardTitle).frame(maxWidth: .infinity).padding(.vertical, 12)
+                            .background(Color.bioDanger.opacity(0.12)).foregroundColor(.bioDanger).cornerRadius(Radius.inner)
+                    }.buttonStyle(.plain)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading).cardSurface(padding: Spacing.lg)
+    }
+
+    private func assess(_ correct: Bool) {
+        withAnimation { selfResult = correct }
+        guard !correct else { return }
+        for kpId in problem.relatedKpIds {
+            MistakeManager.shared.markWeak(kpId)
+            ReviewScheduler.shared.relapse(kpId)
+        }
     }
 
     private var trapCard: some View {

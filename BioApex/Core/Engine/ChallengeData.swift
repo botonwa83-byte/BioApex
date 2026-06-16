@@ -5,7 +5,7 @@ import Foundation
 
 enum ChallengeData {
     // 分组拼装：每组单独成 [ChallengeProblem]，避免单个超大数组字面量拖慢类型检查（与 QuestionData 同构）。
-    static let all: [ChallengeProblem] = [core, deepBatch1, deepBatch2, deepBatch3, deepBatch4, deepBatch5].flatMap { $0 }
+    static let all: [ChallengeProblem] = [core, deepBatch1, deepBatch2, deepBatch3, deepBatch4, deepBatch5, deepBatch6].flatMap { $0 }
 
     private static let core: [ChallengeProblem] = [
         ChallengeProblem(
@@ -608,6 +608,46 @@ enum ChallengeData {
             answer: "后代只有 2 种表现型（双显、双隐），比例 1∶1。",
             takeaway: "完全连锁＝只有亲本型配子：测交后代 2 种 1∶1；雄果蝇、雌蚕减数分裂不发生交换是经典考点。",
             relatedKpIds: ["g_mendel_02"]),
+    ]
+
+    // MARK: 纵深批次 6（竞赛拔高：代谢/遗传/生态各 1 道天花板）
+    private static let deepBatch6: [ChallengeProblem] = [
+        ChallengeProblem(
+            id: "ch_isotope_olym", title: "有氧呼吸生成的水，氧从哪来", kind: .olympiad, weapon: .isotope,
+            topic: "代谢", difficulty: 5,
+            content: "用 ¹⁸O 标记的氧气(¹⁸O₂)供给正在进行有氧呼吸的细胞，检测发现生成的水中含 ¹⁸O。请说明有氧呼吸中水的消耗与生成阶段，并解释该结果。",
+            trap: "误以为水只在呼吸中被消耗，或答不清生成水的 O 来自 O₂ 还是底物。",
+            keyInsight: "有氧呼吸第二阶段消耗水、第三阶段 [H]+O₂ 生成水；生成水中的 O 来自 O₂，故 ¹⁸O₂ → H₂¹⁸O。",
+            steps: ["第一阶段（细胞质基质）：葡萄糖→丙酮酸 + [H]，不涉及水的净变化",
+                    "第二阶段（线粒体基质）：丙酮酸 + H₂O → CO₂ + [H]，消耗水",
+                    "第三阶段（线粒体内膜）：[H] + O₂ → H₂O，生成水，O 来自 O₂",
+                    "故 ¹⁸O₂ 参与第三阶段 → 生成 H₂¹⁸O，检测到水含 ¹⁸O"],
+            answer: "水在第二阶段被消耗、第三阶段生成；生成水中的 O 来自 O₂，所以 ¹⁸O₂ 使生成的水含 ¹⁸O。",
+            takeaway: "示踪有氧呼吸：¹⁸O₂→水（第三阶段）；标记葡萄糖/水的碳氧则随 CO₂ 在第二阶段释放——按阶段对应元素去向。",
+            relatedKpIds: ["m1_resp_01"]),
+        ChallengeProblem(
+            id: "ch_abo_olym", title: "ABO 血型的基因频率", kind: .olympiad, weapon: .hardyWeinberg,
+            topic: "遗传", difficulty: 5,
+            content: "ABO 血型由复等位基因 Iᴬ、Iᴮ、i 决定（Iᴬ、Iᴮ 对 i 显性）。某遗传平衡群体中 O 型(ii)占 25%。求 i 基因的频率。",
+            trap: "复等位基因有三个，容易误用两等位的 p+q=1，或不会从隐性纯合下手。",
+            keyInsight: "无论几个等位，隐性纯合 ii 的频率都等于 i 频率的平方：ii = r²。",
+            steps: ["设 i 的频率为 r",
+                    "O 型 ii = r² = 25% = 0.25",
+                    "r = √0.25 = 0.5"],
+            answer: "i 基因的频率为 0.5。",
+            takeaway: "复等位基因群体频率：抓住隐性纯合＝该隐性基因频率的平方，开方即得——再配合 A/B 型频率可解出 Iᴬ、Iᴮ。",
+            relatedKpIds: ["g_evo_02", "g_freq_genotype"]),
+        ChallengeProblem(
+            id: "ch_extreme_olym", title: "食谱比例可调时的能量极值", kind: .olympiad, weapon: .extremeValue,
+            topic: "生态", difficulty: 5,
+            content: "某人食物中植物性与动物性食物的比例可调（动物均以植物为食）。该人若增重 1 kg，最少、最多需消耗植物各多少？（传递效率 10%~20%）",
+            trap: "不会同时调动'食物链长短（吃植物还是吃动物）'与'传递效率'两个极端。",
+            keyInsight: "最少：全吃植物（植物→人）且效率 20%；最多：全吃动物（植物→动物→人）且效率 10%。",
+            steps: ["最少：全吃植物，植物→人，效率 20% → 1 ÷ 0.2 = 5 kg",
+                    "最多：全吃动物，植物→动物→人，效率 10% → 1 ÷ 0.1 ÷ 0.1 = 100 kg"],
+            answer: "最少 5 kg，最多 100 kg。",
+            takeaway: "'营养级越低、效率越高则消耗越少'：调食谱求能量极值，最少＝最短链+最高效率，最多＝最长链+最低效率。",
+            relatedKpIds: ["e_eco_05", "e_eco_02"]),
     ]
 
     static func problem(id: String) -> ChallengeProblem? { all.first { $0.id == id } }

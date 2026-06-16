@@ -47,6 +47,12 @@ final class ReviewScheduler: ObservableObject {
         persist()
     }
 
+    /// 回灌：把考点拉回最低档、近期到期复习（如破题之眼答错时触发）；未排期则新建。
+    func relapse(_ id: String) {
+        items[id] = ReviewItem(id: id, level: 0, nextDue: daysFromNow(Self.intervals[0]))
+        persist()
+    }
+
     private func daysFromNow(_ days: Int) -> Date {
         Calendar.current.date(byAdding: .day, value: days, to: Date()) ?? Date()
     }
@@ -79,6 +85,12 @@ final class MistakeManager: ObservableObject {
 
     func toggleWeak(_ id: String) {
         if weakPoints.contains(id) { weakPoints.remove(id) } else { weakPoints.insert(id) }
+        persist()
+    }
+    /// 幂等加入薄弱本（不会反向取消，用于错题回灌）。
+    func markWeak(_ id: String) {
+        guard !weakPoints.contains(id) else { return }
+        weakPoints.insert(id)
         persist()
     }
     func isWeak(_ id: String) -> Bool { weakPoints.contains(id) }
