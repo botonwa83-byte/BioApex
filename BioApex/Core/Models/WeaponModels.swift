@@ -15,6 +15,9 @@ enum BioWeapon: String, Codable, CaseIterable, Identifiable {
     case control        // 实验对照与变量控制
     case scoring        // 采分点规范表述
     case dataInsight    // 数据洞察（由比值/数据反推）
+    case baseCount      // 碱基计算与中心法则数量关系
+    case crossDesign    // 杂交方案设计（鉴定显隐/纯合）
+    case linkage        // 连锁互换与基因定位
     case hardyWeinberg  // 哈代—温伯格（竞赛）
 
     var id: String { rawValue }
@@ -32,6 +35,9 @@ enum BioWeapon: String, Codable, CaseIterable, Identifiable {
         case .control:       return "对照与变量控制"
         case .scoring:       return "采分点规范表述"
         case .dataInsight:   return "数据洞察"
+        case .baseCount:     return "碱基计算"
+        case .crossDesign:   return "杂交方案设计"
+        case .linkage:       return "连锁与基因定位"
         case .hardyWeinberg: return "哈代—温伯格"
         }
     }
@@ -48,6 +54,9 @@ enum BioWeapon: String, Codable, CaseIterable, Identifiable {
         case .control:       return "testtube.2"
         case .scoring:       return "text.append"
         case .dataInsight:   return "eye"
+        case .baseCount:     return "number"
+        case .crossDesign:   return "arrow.triangle.branch"
+        case .linkage:       return "link"
         case .hardyWeinberg: return "percent"
         }
     }
@@ -65,6 +74,9 @@ enum BioWeapon: String, Codable, CaseIterable, Identifiable {
         case .control:       return "单一变量 + 对照 + 等量，让结论可信"
         case .scoring:       return "答到点、用术语，大题靠踩分"
         case .dataInsight:   return "从数据/比值反推过程（如 RQ 判断呼吸类型）"
+        case .baseCount:     return "互补配对 + 中心法则，把碱基/氨基酸数量算清"
+        case .crossDesign:   return "用自交/测交设计实验，鉴定显隐性与纯合杂合"
+        case .linkage:       return "由后代比例偏离识别连锁，重组率≈图距"
         case .hardyWeinberg: return "遗传平衡下用 p²+2pq+q²=1 算频率"
         }
     }

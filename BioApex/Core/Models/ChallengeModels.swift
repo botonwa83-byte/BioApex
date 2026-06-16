@@ -23,4 +23,5 @@ struct ChallengeProblem: Identifiable, Codable {
     let steps: [String]         // 巧解步骤
     let answer: String          // 答案
     let takeaway: String        // 方法迁移：这招还能用在哪
+    var relatedKpIds: [String] = []  // 关联考点：做错可回灌复习、考点页可跳转（学—验—记—破闭环）
 }

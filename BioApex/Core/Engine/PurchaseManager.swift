@@ -18,7 +18,8 @@ final class PurchaseManager: ObservableObject {
     /// 免费档数量（改动需同步 BioApexTests.testFreeTierPolicy）。
     static let freeProcessCount = 4    // 过程剧场前 4 个免费
     static let freeDetectiveCount = 2  // 遗传神探前 2 案免费
-    static let freeChallengeCount = 2  // 破题之眼前 2 题免费试看
+    /// 破题之眼免费样本数：每把武器各放出 1 道最易的高考例题（广度免费、纵深付费），见 ChallengeData.freeSampleIds。
+    static var freeChallengeCount: Int { ChallengeData.freeSampleIds.count }
 
     // MARK: 解锁价值统计（数据驱动付费墙：真实数字随内容增长自动更新，无需手改文案）
 
@@ -87,9 +88,10 @@ final class PurchaseManager: ObservableObject {
         return index >= Self.freeDetectiveCount
     }
 
-    func isChallengePremiumLocked(index: Int) -> Bool {
+    /// 破题之眼按"每武器免费第 1 道"判定：免费样本之外（含全部竞赛题与难度 5）均锁定。
+    func isChallengePremiumLocked(_ problem: ChallengeProblem) -> Bool {
         guard !isUnlocked else { return false }
-        return index >= Self.freeChallengeCount
+        return !ChallengeData.freeSampleIds.contains(problem.id)
     }
 
     // MARK: StoreKit

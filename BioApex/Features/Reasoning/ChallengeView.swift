@@ -11,8 +11,8 @@ struct ChallengeView: View {
             VStack(alignment: .leading, spacing: Spacing.lg) {
                 Text("高考压轴 × 生物竞赛——别硬刚，先识局，一招巧解。")
                     .font(.caption).foregroundColor(.secondary)
-                ForEach(Array(ChallengeData.all.enumerated()), id: \.element.id) { index, p in
-                    row(p, locked: purchase.isChallengePremiumLocked(index: index))
+                ForEach(ChallengeData.all) { p in
+                    row(p, locked: purchase.isChallengePremiumLocked(p))
                 }
             }
             .padding(Spacing.lg).readableWidth()

@@ -147,13 +147,46 @@ final class BioApexTests: XCTestCase {
     func testChallengeData() {
         let ids = ChallengeData.all.map(\.id)
         XCTAssertEqual(Set(ids).count, ids.count, "压轴题 ID 重复")
+        let kpIds = Set(SyllabusData.all.map(\.id))
         for p in ChallengeData.all {
             XCTAssertFalse(p.content.isEmpty); XCTAssertFalse(p.keyInsight.isEmpty)
             XCTAssertFalse(p.steps.isEmpty); XCTAssertFalse(p.answer.isEmpty)
             XCTAssertFalse(p.takeaway.isEmpty, "题 \(p.id) 缺方法迁移")
             XCTAssertTrue((1...5).contains(p.difficulty))
+            // 闭环：每道压轴题至少关联一个真实考点（学—验—记—破）
+            XCTAssertFalse(p.relatedKpIds.isEmpty, "压轴题 \(p.id) 未关联考点")
+            for kp in p.relatedKpIds {
+                XCTAssertTrue(kpIds.contains(kp), "压轴题 \(p.id) 关联了不存在的考点 \(kp)")
+            }
         }
         XCTAssertLessThanOrEqual(PurchaseManager.freeChallengeCount, ChallengeData.all.count)
+    }
+
+    /// 破题之眼纵深：每把武器≥3 题、难度覆盖到 2 与 5、竞赛档≥4 题（防回退到 1武器1题）。
+    func testChallengeDepth() {
+        for w in BioWeapon.allCases {
+            let n = ChallengeData.all.filter { $0.weapon == w }.count
+            XCTAssertGreaterThanOrEqual(n, 3, "武器 \(w.name) 的破题之眼例题不足 3 道")
+        }
+        let difficulties = Set(ChallengeData.all.map(\.difficulty))
+        XCTAssertTrue(difficulties.contains(5), "缺少难度 5 的天花板压轴题")
+        XCTAssertTrue(difficulties.contains(2), "缺少难度 2 的入门压轴题")
+        let olympiad = ChallengeData.all.filter { $0.kind == .olympiad }.count
+        XCTAssertGreaterThanOrEqual(olympiad, 4, "竞赛档压轴题应≥4（拔高钩子）")
+    }
+
+    /// 免费钩子策略（广度免费、纵深付费）：每把武器至多 1 道免费、免费样本均为高考且难度≤4、竞赛/难度5 全锁、留有付费纵深。
+    func testFreeSamplePolicy() {
+        let free = ChallengeData.freeSampleIds.compactMap { ChallengeData.problem(id: $0) }
+        XCTAssertEqual(free.count, ChallengeData.freeSampleIds.count, "免费样本 id 必须都能解析")
+        let weapons = free.map(\.weapon)
+        XCTAssertEqual(Set(weapons).count, weapons.count, "同一武器放出了多道免费题")
+        for p in free {
+            XCTAssertEqual(p.kind, .gaokao, "免费样本不应是竞赛题：\(p.id)")
+            XCTAssertLessThanOrEqual(p.difficulty, 4, "免费样本难度应≤4：\(p.id)")
+        }
+        XCTAssertGreaterThan(free.count, 0)
+        XCTAssertLessThan(free.count, ChallengeData.all.count, "应保留付费纵深")
     }
 
     /// 每个教材模块都要有考点（不能空模块）。

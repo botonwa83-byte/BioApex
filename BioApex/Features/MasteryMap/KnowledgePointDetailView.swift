@@ -32,6 +32,7 @@ struct KnowledgePointDetailView: View {
                     if let mem = point.memoryAid { memCard(mem) }
                     if let err = point.commonError { errorCard(err) }
                     if !relatedPoints.isEmpty { relatedCard }
+                    if !relatedChallenges.isEmpty { challengeCard }
                     if kpQuestions.isEmpty { masteryControl } else { practiceSection }
                 }
             }
@@ -59,6 +60,7 @@ struct KnowledgePointDetailView: View {
                 lockRow("exclamationmark.triangle.fill", "易错警示", show: point.commonError != nil)
                 lockRow("checklist", "\(kpQuestions.count) 道精准诊断题", show: !kpQuestions.isEmpty)
                 lockRow("point.3.connected.trianglepath.dotted", "关联考点网", show: !relatedPoints.isEmpty)
+                lockRow("key.fill", "关联破题之眼 \(relatedChallenges.count) 道压轴巧解", show: !relatedChallenges.isEmpty)
             }
             Button { showPaywall = true } label: {
                 HStack(spacing: 8) {
@@ -163,6 +165,43 @@ struct KnowledgePointDetailView: View {
                         Image(systemName: "arrow.turn.down.right").font(.caption).foregroundColor(.bioTeal)
                         Text(rp.title).font(.subheadline).foregroundColor(.primary)
                         Spacer()
+                        Image(systemName: "chevron.right").font(.caption2).foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading).cardSurface(padding: Spacing.lg)
+    }
+
+    // 关联破题之眼：用 relatedKpIds 把考点与压轴题/武器打通（学—验—记—破闭环）。
+    private var relatedChallenges: [ChallengeProblem] {
+        ChallengeData.all.filter { $0.relatedKpIds.contains(point.id) }
+    }
+
+    private func challengeLocked(_ p: ChallengeProblem) -> Bool {
+        purchase.isChallengePremiumLocked(p)
+    }
+
+    private var challengeCard: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            SectionHeader(title: "破题之眼 · 压轴怎么破", systemImage: "key.fill", accent: .bioGold)
+            Text("用一把武器破解与本考点相关的高考压轴 / 竞赛题。").font(.caption2).foregroundColor(.secondary)
+            ForEach(relatedChallenges) { p in
+                let locked = challengeLocked(p)
+                NavigationLink { ChallengeDetailView(problem: p, previewLocked: locked) } label: {
+                    HStack(spacing: Spacing.sm) {
+                        Image(systemName: p.weapon.icon).font(.caption).foregroundColor(.bioGold).frame(width: 18)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(p.title).font(.subheadline).foregroundColor(.primary)
+                            HStack(spacing: 6) {
+                                Text("巧解：\(p.weapon.name)").font(.caption2).foregroundColor(.bioGreen)
+                                Text(String(repeating: "🔥", count: p.difficulty)).font(.caption2)
+                            }
+                        }
+                        Spacer()
+                        if locked { Image(systemName: "crown.fill").font(.caption2).foregroundColor(.bioGold) }
                         Image(systemName: "chevron.right").font(.caption2).foregroundColor(.secondary)
                     }
                     .padding(.vertical, 4)

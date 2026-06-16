@@ -4,7 +4,10 @@ import Foundation
 // 红线：题目与解法均经核对；不臆造具体试题出处。前 2 题免费试看。
 
 enum ChallengeData {
-    static let all: [ChallengeProblem] = [
+    // 分组拼装：每组单独成 [ChallengeProblem]，避免单个超大数组字面量拖慢类型检查（与 QuestionData 同构）。
+    static let all: [ChallengeProblem] = [core, deepBatch1, deepBatch2, deepBatch3, deepBatch4, deepBatch5].flatMap { $0 }
+
+    private static let core: [ChallengeProblem] = [
         ChallengeProblem(
             id: "ch_isotope", title: "光合作用释放的 O₂ 从哪来", kind: .gaokao, weapon: .isotope,
             topic: "代谢", difficulty: 3,
@@ -15,7 +18,8 @@ enum ChallengeData {
                     "C¹⁶O₂ 经暗反应固定、还原 → 不进入 O₂",
                     "若反过来用 C¹⁸O₂、H₂¹⁶O，则释放 ¹⁶O₂，而 ¹⁸O 出现在 C₃、有机物和水中"],
             answer: "释放的 O₂ 含 ¹⁸O（来自水）。",
-            takeaway: "凡问「某原子来自哪/去了哪」，用同位素示踪定来源：光合 O₂ 来自水、有氧呼吸生成的水中 O 来自 O₂。"),
+            takeaway: "凡问「某原子来自哪/去了哪」，用同位素示踪定来源：光合 O₂ 来自水、有氧呼吸生成的水中 O 来自 O₂。",
+            relatedKpIds: ["m1_photo_01", "m1_resp_01"]),
 
         ChallengeProblem(
             id: "ch_energy", title: "能量流动的最多与最少", kind: .gaokao, weapon: .extremeValue,
@@ -26,7 +30,8 @@ enum ChallengeData {
             steps: ["最多：1 ÷ 10% ÷ 10% ÷ 10% = 1000 kg",
                     "最少：1 ÷ 20% ÷ 20% ÷ 20% = 125 kg"],
             answer: "最少 125 kg，最多 1000 kg。",
-            takeaway: "能量最值：求「消耗最多」用最低效率、「消耗最少」用最高效率；问「最高营养级获得最多」则反过来。"),
+            takeaway: "能量最值：求「消耗最多」用最低效率、「消耗最少」用最高效率；问「最高营养级获得最多」则反过来。",
+            relatedKpIds: ["e_eco_05", "e_eco_02"]),
 
         ChallengeProblem(
             id: "ch_hw", title: "隐性病携带者有多少", kind: .olympiad, weapon: .hardyWeinberg,
@@ -38,7 +43,8 @@ enum ChallengeData {
                     "p = 1 − q = 99/100",
                     "携带者 Aa = 2pq = 2 × (99/100) × (1/100) ≈ 1/50 ≈ 2%"],
             answer: "约 2%（1/50）。",
-            takeaway: "哈代—温伯格：隐性纯合频率 = q²，开方得 q，杂合 = 2pq——也能解释近亲为何高危。"),
+            takeaway: "哈代—温伯格：隐性纯合频率 = q²，开方得 q，杂合 = 2pq——也能解释近亲为何高危。",
+            relatedKpIds: ["g_evo_02", "g_freq_genotype"]),
 
         ChallengeProblem(
             id: "ch_hypothesis", title: "常隐还是伴 X 隐", kind: .gaokao, weapon: .hypothesis,
@@ -51,7 +57,8 @@ enum ChallengeData {
                     "已知父亲表现正常 → 与假设矛盾 → 排除伴 X 隐性",
                     "结论：常染色体隐性遗传"],
             answer: "常染色体隐性遗传。",
-            takeaway: "判断遗传方式：先「无中生有/有中生无」定显隐，再用假设法（女病看父、男病看母）排除 X。"),
+            takeaway: "判断遗传方式：先「无中生有/有中生无」定显隐，再用假设法（女病看父、男病看母）排除 X。",
+            relatedKpIds: ["g_sex_01", "g_mendel_01"]),
 
         ChallengeProblem(
             id: "ch_rq", title: "呼吸商藏着的秘密", kind: .gaokao, weapon: .dataInsight,
@@ -63,7 +70,8 @@ enum ChallengeData {
                     "无氧呼吸（产酒精）：释放 CO₂ 但不吸收 O₂",
                     "RQ = 1.2 > 1 → 同时进行有氧呼吸和产酒精的无氧呼吸"],
             answer: "既进行有氧呼吸，也进行（产生酒精的）无氧呼吸。",
-            takeaway: "RQ=1 纯糖有氧；RQ>1 兼有无氧；RQ<1 底物含氧少（如脂肪）。用比值反推呼吸过程。"),
+            takeaway: "RQ=1 纯糖有氧；RQ>1 兼有无氧；RQ<1 底物含氧少（如脂肪）。用比值反推呼吸过程。",
+            relatedKpIds: ["m1_resp_01", "m1_resp_02"]),
 
         ChallengeProblem(
             id: "ch_prob", title: "两病独立 · 只患一种的概率", kind: .gaokao, weapon: .probability,
@@ -76,7 +84,8 @@ enum ChallengeData {
                     "只患乙 = 3/4 × 1/4 = 3/16",
                     "只患一种 = 3/16 + 3/16 = 6/16 = 3/8"],
             answer: "3/8。",
-            takeaway: "概率拆解：「只患一种」拆成两个互斥事件相加；「至少患一种」= 1 − 都不患；「都患」直接相乘。看清关键词再下手。"),
+            takeaway: "概率拆解：「只患一种」拆成两个互斥事件相加；「至少患一种」= 1 − 都不患；「都患」直接相乘。看清关键词再下手。",
+            relatedKpIds: ["g_mendel_02"]),
 
         ChallengeProblem(
             id: "ch_graph", title: "曲线到了平台，怎么再上去", kind: .gaokao, weapon: .graphReading,
@@ -89,7 +98,8 @@ enum ChallengeData {
                     "此时限制因素是 CO₂ 浓度（或温度）",
                     "适当增施 CO₂ 或调到最适温度，曲线可继续上升"],
             answer: "限制因素是 CO₂ 浓度（或温度）；增施 CO₂、调至最适温度可进一步提高。",
-            takeaway: "坐标曲线三看：看轴 → 看拐点/平台 → 判限制因素。平台段必须换「非横轴」的因素才能突破。"),
+            takeaway: "坐标曲线三看：看轴 → 看拐点/平台 → 判限制因素。平台段必须换「非横轴」的因素才能突破。",
+            relatedKpIds: ["m1_photo_04"]),
 
         ChallengeProblem(
             id: "ch_control", title: "验证甲状腺激素促发育", kind: .gaokao, weapon: .control,
@@ -102,7 +112,8 @@ enum ChallengeData {
                     "其他条件（水温、水量、食物量等）相同且适宜",
                     "一段时间后比较两组发育速度（如长出四肢、变态时间）"],
             answer: "预期实验组发育明显快于对照组，即可验证结论。",
-            takeaway: "实验设计三原则：单一变量 + 对照 + 等量适宜。「验证类」预期唯一；「探究类」要列出多种可能结果。"),
+            takeaway: "实验设计三原则：单一变量 + 对照 + 等量适宜。「验证类」预期唯一；「探究类」要列出多种可能结果。",
+            relatedKpIds: ["h_humor_05"]),
 
         ChallengeProblem(
             id: "ch_reverse", title: "由 3∶1 反推亲本基因型", kind: .gaokao, weapon: .reverse,
@@ -114,7 +125,8 @@ enum ChallengeData {
                     "双亲表现高茎（D_）→ 基因型只能是 Dd",
                     "验证：Dd × Dd → 3 高∶1 矮，吻合"],
             answer: "两亲本基因型均为 Dd。",
-            takeaway: "由子代分离比逆推亲本：3∶1 ⇐ Dd×Dd；1∶1 ⇐ Dd×dd；全显 ⇐ 至少一方为 DD。先看子代再回推。"),
+            takeaway: "由子代分离比逆推亲本：3∶1 ⇐ Dd×Dd；1∶1 ⇐ Dd×dd；全显 ⇐ 至少一方为 DD。先看子代再回推。",
+            relatedKpIds: ["g_mendel_01"]),
 
         ChallengeProblem(
             id: "ch_gamete", title: "配子法破多对基因杂交", kind: .gaokao, weapon: .gamete,
@@ -127,7 +139,8 @@ enum ChallengeData {
                     "组合得后代：AaBb、Aabb、aaBb、aabb，各占 1/4",
                     "表现型 A_B_∶A_bb∶aaB_∶aabb = 1∶1∶1∶1"],
             answer: "4 种表现型，比例 1∶1∶1∶1。",
-            takeaway: "配子法通用：先定各亲本的配子种类与比例，再组合相乘——尤其适合亲本基因型不对称（非自交）的杂交。"),
+            takeaway: "配子法通用：先定各亲本的配子种类与比例，再组合相乘——尤其适合亲本基因型不对称（非自交）的杂交。",
+            relatedKpIds: ["g_mendel_02"]),
 
         ChallengeProblem(
             id: "ch_pedigree", title: "系谱三步：判方式 + 算概率", kind: .gaokao, weapon: .pedigree,
@@ -140,7 +153,8 @@ enum ChallengeData {
                     "第三步 算概率：双亲均为 Aa；再生孩子患病 aa = 1/4",
                     "患病男孩 = 患病 1/4 × 男孩 1/2 = 1/8"],
             answer: "常染色体隐性遗传；再生患病男孩的概率为 1/8。",
-            takeaway: "系谱判定三步法：判显隐（无中生有/有中生无）→ 定常/X（女病看父、男病看母）→ 按基因型算概率；问“患病男孩”别忘再乘性别 1/2。"),
+            takeaway: "系谱判定三步法：判显隐（无中生有/有中生无）→ 定常/X（女病看父、男病看母）→ 按基因型算概率；问“患病男孩”别忘再乘性别 1/2。",
+            relatedKpIds: ["g_sex_01", "g_mendel_01"]),
 
         ChallengeProblem(
             id: "ch_scoring", title: "光合“午休”——简答怎么踩满分", kind: .gaokao, weapon: .scoring,
@@ -153,8 +167,463 @@ enum ChallengeData {
                     "逐点用规范术语：“气孔关闭”“CO₂ 供应减少”“暗反应/CO₂ 固定减弱”都是采分点",
                     "因果完整、不漏关键词，分点表述"],
             answer: "正午光照过强、温度过高，蒸腾作用过强使植物失水，导致气孔部分关闭，进入叶片的 CO₂ 减少，暗反应中 CO₂ 的固定减弱，从而光合作用速率短暂下降。",
-            takeaway: "采分点表述：先理清因果链（原因→机制→结果），每个环节用规范术语单独成点；简答题“踩点给分”，关键节点宁多勿漏。"),
+            takeaway: "采分点表述：先理清因果链（原因→机制→结果），每个环节用规范术语单独成点；简答题“踩点给分”，关键节点宁多勿漏。",
+            relatedKpIds: ["m1_photo_04", "m1_photo_01"]),
+    ]
+
+    // MARK: 纵深批次 1（代谢/生态：同位素·数据洞察·读图各加码）
+    private static let deepBatch1: [ChallengeProblem] = [
+        ChallengeProblem(
+            id: "ch_isotope_2", title: "³H 追踪分泌蛋白的旅程", kind: .gaokao, weapon: .isotope,
+            topic: "代谢", difficulty: 3,
+            content: "用 ³H 标记的亮氨酸（一种氨基酸）饲喂某腺细胞，一段时间内放射性会依次出现在哪些结构？由此说明什么？",
+            trap: "只记得'核糖体合成蛋白'，说不清后续加工运输的细胞器顺序。",
+            keyInsight: "放射性出现的先后＝分泌蛋白合成运输的路线：核糖体→内质网→高尔基体→细胞膜。",
+            steps: ["亮氨酸是氨基酸，先在核糖体上合成肽链（最先出现放射性）",
+                    "进入内质网加工折叠 → 高尔基体进一步修饰、包装成分泌泡",
+                    "分泌泡与细胞膜融合，将蛋白分泌到细胞外",
+                    "全程由线粒体供能"],
+            answer: "依次为 核糖体→内质网→高尔基体→细胞膜（及分泌泡），说明这些细胞器分工协作完成分泌蛋白的合成与运输。",
+            takeaway: "同位素示踪'路径'：标记原料、按放射性出现的先后排出经过的结构，是判断分泌蛋白/物质运输路线的通用法。",
+            relatedKpIds: ["m1_cell_04"]),
+        ChallengeProblem(
+            id: "ch_isotope_3", title: "¹⁴C 走过的卡尔文循环", kind: .gaokao, weapon: .isotope,
+            topic: "代谢", difficulty: 4,
+            content: "向正在进行光合作用的小球藻供给 ¹⁴CO₂，请写出放射性碳（¹⁴C）在暗反应中的转移途径。",
+            trap: "容易把碳和氧、氢的去向混在一起，写不清碳骨架的流动。",
+            keyInsight: "只追碳：CO₂ 先被 C₅ 固定成 C₃，C₃ 被还原生成有机物（CH₂O）并再生 C₅。",
+            steps: ["¹⁴CO₂ 经 CO₂ 固定：¹⁴CO₂ + C₅ → 2 个含 ¹⁴C 的 C₃",
+                    "C₃ 经 [H] 和 ATP 还原 → 一部分生成有机物（¹⁴CH₂O）",
+                    "另一部分 C₃ 重新生成 C₅，循环利用"],
+            answer: "¹⁴C 的转移途径：¹⁴CO₂ → C₃ →（CH₂O）和 C₅。",
+            takeaway: "示踪'碳路径'看暗反应：CO₂→C₃→有机物/C₅；示踪'氧'看光反应（O₂ 来自水）。元素不同，路径不同。",
+            relatedKpIds: ["m1_photo_02"]),
+        ChallengeProblem(
+            id: "ch_rq_2", title: "油料种子的 RQ 为何小于 1", kind: .gaokao, weapon: .dataInsight,
+            topic: "代谢", difficulty: 3,
+            content: "测得萌发的花生种子（富含脂肪）其呼吸商 RQ = CO₂释放/O₂吸收 ≈ 0.7。试解释原因。",
+            trap: "默认底物是葡萄糖，认定 RQ 应该等于 1，无法解释 0.7。",
+            keyInsight: "脂肪分子含碳氢多、含氧少，彻底氧化时耗 O₂ 多、放 CO₂ 相对少，故 RQ < 1。",
+            steps: ["RQ=1 对应以葡萄糖为底物的有氧呼吸",
+                    "脂肪相对葡萄糖含氧比例低，氧化同样多的碳需要消耗更多 O₂",
+                    "O₂ 吸收量大、CO₂ 释放量相对小 → RQ < 1（约 0.7）"],
+            answer: "因为花生种子主要以脂肪为呼吸底物，脂肪含氧少、氧化耗 O₂ 多，所以 RQ 小于 1。",
+            takeaway: "RQ 反推底物：=1 糖、>1 兼有无氧呼吸、<1 底物为脂肪等含氧少的物质。",
+            relatedKpIds: ["m1_resp_01"]),
+        ChallengeProblem(
+            id: "ch_data_pop", title: "标志重捕为何会高估", kind: .gaokao, weapon: .dataInsight,
+            topic: "生态", difficulty: 3,
+            content: "用标志重捕法调查某草地田鼠数量：首次捕获并标记 100 只，放回；再次捕获 80 只，其中带标记 20 只。估算种群数量。若标记物部分脱落，估算值会偏大还是偏小？",
+            trap: "公式记不牢，且不会分析'标记脱落'对结果的影响方向。",
+            keyInsight: "N = (首次标记数 × 重捕总数) ÷ 重捕中标记数；分母变小则 N 偏大。",
+            steps: ["N = (100 × 80) ÷ 20 = 400 只",
+                    "若标记物脱落，重捕中带标记数（分母）偏小",
+                    "N = 标记×重捕 ÷ 偏小的分母 → 估算值偏大"],
+            answer: "估算约 400 只；标记物脱落会使估算值偏大。",
+            takeaway: "标志重捕：抓住 N=Mn/m，凡使'重捕中标记数 m'偏小的因素（脱落、标记后更难捕）都让 N 偏大。",
+            relatedKpIds: ["e_pop_03"]),
+        ChallengeProblem(
+            id: "ch_graph_2", title: "光补偿点与光饱和点", kind: .gaokao, weapon: .graphReading,
+            topic: "代谢", difficulty: 3,
+            content: "以光照强度为横轴、CO₂ 吸收量（净光合）为纵轴绘制曲线：曲线与横轴交点、以及变平的起点各代表什么？交点左侧 CO₂ 表现为释放说明什么？",
+            trap: "只会读最高点，分不清'补偿点''饱和点'，更不会解释交点左侧。",
+            keyInsight: "与横轴交点＝光补偿点（光合=呼吸）；变平起点＝光饱和点；交点左侧净表现释放 CO₂ 说明呼吸>光合。",
+            steps: ["交点（净光合=0）：光合速率＝呼吸速率，为光补偿点",
+                    "交点左侧：光太弱，呼吸释放的 CO₂ 多于光合消耗 → 净释放 CO₂",
+                    "曲线变平的起点：光饱和点，再增光光合不再增加（限制因素变为 CO₂/温度）"],
+            answer: "交点为光补偿点（光合=呼吸），变平起点为光饱和点；交点左侧净释放 CO₂ 表示呼吸作用强于光合作用。",
+            takeaway: "净光合曲线：交点=补偿点、平台起点=饱和点；真光合=净光合+呼吸，别把纵轴的'净值'当真光合。",
+            relatedKpIds: ["m1_photo_05"]),
+        ChallengeProblem(
+            id: "ch_graph_pop", title: "S 型曲线的 K/2 玄机", kind: .gaokao, weapon: .graphReading,
+            topic: "生态", difficulty: 4,
+            content: "某种群呈'S'型增长，环境容纳量为 K。种群增长速率最大出现在何时？据此，防治害虫和持续捕捞应分别如何把握时机？",
+            trap: "把'增长速率最大'误当成'数量最大（K）'，防治与捕捞策略也就答反。",
+            keyInsight: "S 型增长在 K/2 时增长速率最大；防治要在 K/2 之前压低，捕捞后让种群维持在 K/2。",
+            steps: ["S 型曲线增长速率先增后减，在 K/2 处达最大、在 K 处为 0",
+                    "防治害虫：在种群数量达到 K/2 之前就控制，避免其进入快速增长期",
+                    "持续捕捞（如捕鱼）：捕后使剩余量维持在 K/2，可获最大可持续产量"],
+            answer: "增长速率在 K/2 时最大；害虫应在 K/2 前防治，捕捞后让种群保持在 K/2。",
+            takeaway: "S 型曲线：K/2 增长最快、K 为容纳量。'要利用资源就守 K/2，要压制有害种就别让它到 K/2'。",
+            relatedKpIds: ["e_pop_01"]),
+    ]
+
+    // MARK: 纵深批次 2（遗传：假设·概率·配子·系谱·逆推 + 竞赛级群体遗传）
+    private static let deepBatch2: [ChallengeProblem] = [
+        ChallengeProblem(
+            id: "ch_hypothesis_2", title: "正交反交，基因藏在哪条染色体", kind: .gaokao, weapon: .hypothesis,
+            topic: "遗传", difficulty: 3,
+            content: "用一对相对性状的纯合亲本进行正交和反交，若两组 F₁ 的性状表现随母本（或与性别相关联）而不同，说明控制该性状的基因最可能位于哪里？",
+            trap: "只会做一组杂交，想不到用'正交≠反交'来定位基因。",
+            keyInsight: "假设基因在常染色体：正反交 F₁ 应相同；结果不同 → 假设矛盾 → 基因在 X 染色体（伴性）。",
+            steps: ["假设基因在常染色体上，则正交、反交 F₁ 表现型应相同、与性别无关",
+                    "题中正反交结果不同、且与性别相关 → 与假设矛盾",
+                    "排除常染色体 → 基因位于 X 染色体上（伴性遗传）"],
+            answer: "基因最可能位于 X 染色体上（伴性遗传）。",
+            takeaway: "正反交是定位基因的利器：结果相同→常染色体；结果不同且与性别相关→X 染色体。",
+            relatedKpIds: ["g_sex_01"]),
+        ChallengeProblem(
+            id: "ch_prob_2", title: "三对基因自交的指定表现型", kind: .gaokao, weapon: .probability,
+            topic: "遗传", difficulty: 3,
+            content: "基因型 AaBbCc 的个体自交（三对基因独立遗传），后代中表现型为 A_bbC_ 的概率是多少？",
+            trap: "硬画 8×8 棋盘，又慢又易错。",
+            keyInsight: "三对基因独立 → 按单对分别求概率再相乘：A_=3/4、bb=1/4、C_=3/4。",
+            steps: ["Aa 自交：A_ = 3/4",
+                    "Bb 自交：bb = 1/4",
+                    "Cc 自交：C_ = 3/4",
+                    "独立事件相乘：3/4 × 1/4 × 3/4 = 9/64"],
+            answer: "9/64。",
+            takeaway: "多对基因'先分后乘'：把每对基因单独算出目标基因型概率，再相乘——比棋盘法快得多。",
+            relatedKpIds: ["g_mendel_02"]),
+        ChallengeProblem(
+            id: "ch_gamete_2", title: "测交后代映出 F₁ 的配子", kind: .gaokao, weapon: .gamete,
+            topic: "遗传", difficulty: 3,
+            content: "让 F₁（基因型 AaBb，两对基因独立）与基因型 aabb 的个体测交，后代出现 4 种表现型且比例为 1∶1∶1∶1，这说明 F₁ 产生了几种配子、比例如何？",
+            trap: "把测交后代比例和自交的 9∶3∶3∶1 混淆。",
+            keyInsight: "隐性纯合只提供一种 ab 配子，故测交后代的种类与比例＝F₁ 配子的种类与比例。",
+            steps: ["aabb 只产生 1 种配子 ab",
+                    "后代有 4 种且 1∶1∶1∶1 → F₁ 产生 4 种等比配子",
+                    "即 F₁（AaBb）产生 AB、Ab、aB、ab，各占 1/4"],
+            answer: "F₁ 产生 4 种配子：AB、Ab、aB、ab，比例 1∶1∶1∶1。",
+            takeaway: "测交是'配子显示器'：用隐性纯合作母本，后代表现型种类与比例直接反映被测个体的配子种类与比例。",
+            relatedKpIds: ["g_mendel_02"]),
+        ChallengeProblem(
+            id: "ch_pedigree_2", title: "有中生无：这是显性遗传", kind: .gaokao, weapon: .pedigree,
+            topic: "遗传", difficulty: 4,
+            content: "某家族系谱中，一对均患病的夫妇生出了一个表现正常的孩子。判断该病的显隐性；若该病为伴 X 显性遗传，这对患病夫妇生出正常孩子的性别应是什么？",
+            trap: "只判到'显性'就停手，不会进一步用 X 显性的规律确定正常孩子的性别。",
+            keyInsight: "有中生无 → 显性；伴 X 显性中父亲 XᴬY 把 Xᴬ 传给所有女儿 → 女儿必患病，正常孩子只能是儿子。",
+            steps: ["双亲患病、孩子正常（有中生无）→ 该病为显性遗传，双亲均为杂合 Aa",
+                    "若伴 X 显性：父亲基因型 XᴬY，必将 Xᴬ 传给每个女儿 → 女儿全部患病",
+                    "故正常（不带显性致病基因）的孩子只能是儿子（XᵃY）"],
+            answer: "该病为显性遗传；若为伴 X 显性，则正常孩子是儿子。",
+            takeaway: "系谱'有中生无'＝显性；伴 X 显性看父亲——父患病则女儿全患病，正常后代必为儿子。",
+            relatedKpIds: ["g_sex_01", "g_mendel_01"]),
+        ChallengeProblem(
+            id: "ch_reverse_2", title: "1∶1∶1∶1 反推亲本组合", kind: .gaokao, weapon: .reverse,
+            topic: "遗传", difficulty: 3,
+            content: "两对独立遗传的基因，杂交后代出现 4 种表现型且比例为 1∶1∶1∶1。推断双亲的基因型组合。",
+            trap: "看到 4 种表现型就联想 9∶3∶3∶1，误判亲本是 AaBb×AaBb。",
+            keyInsight: "1∶1∶1∶1 是测交比，说明一方为双杂合 AaBb、另一方为双隐性 aabb。",
+            steps: ["4 种表现型且等比（1∶1∶1∶1）是典型测交结果",
+                    "一方必为双杂合 AaBb（产生 4 种等比配子）",
+                    "另一方必为双隐性 aabb（只产生 ab 配子）",
+                    "验证：AaBb × aabb → 1∶1∶1∶1，吻合"],
+            answer: "双亲为 AaBb × aabb。",
+            takeaway: "由后代分离比反推亲本：1∶1∶1∶1＝测交（AaBb×aabb）；9∶3∶3∶1＝双杂合自交。先认比例的'出身'。",
+            relatedKpIds: ["g_mendel_02"]),
+        ChallengeProblem(
+            id: "ch_hw_2", title: "色盲：男女发病率为何差这么多", kind: .olympiad, weapon: .hardyWeinberg,
+            topic: "遗传", difficulty: 5,
+            content: "红绿色盲为 X 染色体隐性遗传。已知某地区男性色盲发病率为 7%。设人群处于遗传平衡，求该地区女性色盲的发病率。",
+            trap: "用常染色体的 q² 直接套男性发病率，忽略男性只有一条 X。",
+            keyInsight: "X 隐性：男性只有一条 X，发病率＝隐性基因频率 q；女性需两条 X 都隐性，发病率＝q²。",
+            steps: ["男性发病率 = q = 7% = 0.07（男性 XᵇY 只需一个 b）",
+                    "女性发病率 = q² = 0.07² = 0.0049",
+                    "即女性色盲发病率约 0.49%"],
+            answer: "女性色盲发病率约为 0.49%（q² = 0.0049）。",
+            takeaway: "X 连锁隐性的群体频率：男性发病率＝q、女性＝q²，所以隐性伴性病'男多女少'。",
+            relatedKpIds: ["g_evo_02", "g_freq_genotype"]),
+    ]
+
+    // MARK: 纵深批次 3（极值·实验对照·采分：覆盖稳态/调节/免疫题型）
+    private static let deepBatch3: [ChallengeProblem] = [
+        ChallengeProblem(
+            id: "ch_extreme_2", title: "最高营养级最多能拿多少能量", kind: .gaokao, weapon: .extremeValue,
+            topic: "生态", difficulty: 3,
+            content: "食物链 甲→乙→丙→丁。若生产者甲固定的能量为 W，丁最多、最少可获得多少能量？（传递效率 10%~20%）",
+            trap: "与'消耗最多/最少'搞反：求'获得最多'反而用最高效率。",
+            keyInsight: "求顶层'获得最多'用最高效率 20% 逐级正推；'获得最少'用最低效率 10%。",
+            steps: ["最多：W × 20% × 20% × 20% = W × 0.008",
+                    "最少：W × 10% × 10% × 10% = W × 0.001"],
+            answer: "最多 0.008W，最少 0.001W。",
+            takeaway: "能量两个方向：'顶层获得'用效率正推（多用 20%、少用 10%）；'底层消耗'用效率逆推（多用 10%、少用 20%），方向别反。",
+            relatedKpIds: ["e_eco_05", "e_eco_02"]),
+        ChallengeProblem(
+            id: "ch_control_2", title: "探究某酶的最适温度", kind: .gaokao, weapon: .control,
+            topic: "代谢", difficulty: 3,
+            content: "请写出'探究某种酶催化反应的最适温度'的实验设计思路（指出自变量、因变量、无关变量及对照方式）。",
+            trap: "只设一两个温度，或同时改变 pH、底物量，得不到最适温度。",
+            keyInsight: "自变量是温度（设一系列梯度相互对照），因变量是反应速率/产物量，其余无关变量相同且适宜。",
+            steps: ["自变量：设置一系列温度梯度（如 0、20、40、60、80 ℃），各组相互对照",
+                    "因变量：相同时间内底物消耗量或产物生成量（反映酶活性）",
+                    "无关变量：pH、底物量、酶量、反应时间等相同且适宜",
+                    "比较各温度下的反应速率，速率最高处对应最适温度（必要时在该温度附近再细分梯度）"],
+            answer: "在最适温度下反应速率最高；据此曲线峰值确定最适温度。",
+            takeaway: "探究'最适'类实验：自变量设梯度（多组相互对照）、单一变量、无关变量等量适宜，用峰值定最适值。",
+            relatedKpIds: ["m1_enzyme_03"]),
+        ChallengeProblem(
+            id: "ch_control_3", title: "验证胰岛素能降血糖", kind: .gaokao, weapon: .control,
+            topic: "稳态", difficulty: 4,
+            content: "请设计实验思路，验证'胰岛素具有降低血糖的作用'。",
+            trap: "想不到用'低血糖症状'作可观察指标，也容易漏掉恢复实验。",
+            keyInsight: "给正常动物注射适量胰岛素→出现低血糖惊厥；再注射葡萄糖→症状缓解（自身前后对照 + 组间对照）。",
+            steps: ["取生理状况相同的健康小鼠若干，随机分为实验组和对照组",
+                    "实验组注射适量胰岛素溶液，对照组注射等量生理盐水，其余条件相同",
+                    "观察：实验组出现活动减少、惊厥等低血糖症状，对照组正常",
+                    "对惊厥小鼠注射葡萄糖溶液，症状缓解，进一步证明是血糖过低所致"],
+            answer: "实验组出现低血糖症状、注射葡萄糖后缓解，说明胰岛素能降低血糖。",
+            takeaway: "验证激素功能常用'施加→看症状→补充拮抗物→看恢复'，用可观察的生理表现作因变量。",
+            relatedKpIds: ["h_humor_01"]),
+        ChallengeProblem(
+            id: "ch_scoring_2", title: "血糖升高后如何回降——规范表述", kind: .gaokao, weapon: .scoring,
+            topic: "稳态", difficulty: 3,
+            content: "进食后血糖升高，请规范说明机体使血糖恢复正常的调节过程。",
+            trap: "只答'胰岛素降血糖'，不写感受、分泌和作用机制，踩不全采分点。",
+            keyInsight: "因果链分点：血糖升高→胰岛 B 细胞分泌胰岛素增多→促摄取利用储存、抑制分解→血糖降低。",
+            steps: ["刺激：血糖浓度升高，直接刺激胰岛 B 细胞（也受下丘脑调节）",
+                    "分泌：胰岛 B 细胞分泌胰岛素增多",
+                    "作用：促进组织细胞摄取、利用和储存葡萄糖（合成肝糖原、肌糖原，转化为脂肪），抑制肝糖原分解和非糖物质转化为葡萄糖",
+                    "结果：血糖浓度降低、恢复正常"],
+            answer: "血糖升高→胰岛 B 细胞分泌胰岛素增多→促进组织细胞摄取利用储存葡萄糖、抑制糖原分解和非糖物质转化→血糖降低。",
+            takeaway: "调节类简答按'刺激→感受/分泌→作用机制→结果'分点，关键术语（胰岛 B 细胞、胰岛素、肝糖原）逐一踩点。",
+            relatedKpIds: ["h_humor_01"]),
+        ChallengeProblem(
+            id: "ch_scoring_3", title: "寒冷中体温为何能恒定——规范表述", kind: .gaokao, weapon: .scoring,
+            topic: "稳态", difficulty: 4,
+            content: "寒冷环境中人体体温仍能维持相对恒定，请规范说明其调节机制（产热与散热两方面）。",
+            trap: "只答'多穿衣服''发抖'，不写神经—体液调节链和产热散热的具体途径。",
+            keyInsight: "冷刺激→下丘脑体温调节中枢→减少散热（皮肤血管收缩、汗腺分泌减少）+ 增加产热（战栗、甲状腺激素和肾上腺素增多）。",
+            steps: ["感受与中枢：皮肤冷觉感受器兴奋，传至下丘脑体温调节中枢",
+                    "减少散热：皮肤血管收缩、血流量减少，汗腺分泌减少",
+                    "增加产热：骨骼肌不自主战栗，甲状腺激素、肾上腺素分泌增多，代谢加快产热增加",
+                    "结果：产热≈散热，体温维持相对恒定（神经—体液共同调节）"],
+            answer: "冷刺激经下丘脑中枢，一方面皮肤血管收缩、汗腺分泌减少以减少散热，另一方面战栗、甲状腺激素和肾上腺素增多以增加产热，使体温维持恒定。",
+            takeaway: "体温调节抓'产热↑＋散热↓'两条线，且是神经—体液共同调节；写清感受器、中枢、效应器与激素名称。",
+            relatedKpIds: ["h_humor_02"]),
+        ChallengeProblem(
+            id: "ch_scoring_4", title: "二次免疫为何又快又强——规范表述", kind: .gaokao, weapon: .scoring,
+            topic: "稳态", difficulty: 3,
+            content: "同种抗原再次侵入机体时，免疫反应往往比第一次更快更强，请规范解释原因。",
+            trap: "只说'有抗体了'，不提记忆细胞，逻辑不完整。",
+            keyInsight: "初次免疫产生记忆细胞；再次遇相同抗原时记忆细胞迅速增殖分化为浆细胞，快速产生大量抗体。",
+            steps: ["初次免疫时，部分 B 细胞（或 T 细胞）增殖分化形成记忆细胞，可长期保留",
+                    "相同抗原再次入侵，记忆细胞能迅速识别并增殖分化为浆细胞（效应 B 细胞）",
+                    "浆细胞快速产生大量抗体，故二次免疫反应更快、更强",
+                    "往往在机体患病前就将抗原消灭"],
+            answer: "因为初次免疫保留了记忆细胞，再次遇到相同抗原时记忆细胞迅速增殖分化为浆细胞，快速产生大量抗体，所以反应更快更强。",
+            takeaway: "二次免疫的核心是'记忆细胞'：又快又强、抗体量大，是疫苗能预防疾病的原理。",
+            relatedKpIds: ["h_immune_01"]),
+    ]
+
+    // MARK: 纵深批次 4（新武器：碱基计算·杂交方案设计·连锁与基因定位）
+    private static let deepBatch4: [ChallengeProblem] = [
+        ChallengeProblem(
+            id: "ch_base_1", title: "知道一个碱基比例，全推出来", kind: .gaokao, weapon: .baseCount,
+            topic: "遗传", difficulty: 3,
+            content: "某双链 DNA 分子中，腺嘌呤(A)占全部碱基的 30%。求鸟嘌呤(G)占全部碱基的百分比。",
+            trap: "误以为四种碱基各占 25%，或把单链比例当成双链比例。",
+            keyInsight: "双链互补：A=T、G=C；已知 A 即知 T，剩下的由 G、C 平分。",
+            steps: ["A=T=30% → A+T=60%",
+                    "G+C = 100% − 60% = 40%",
+                    "G=C → G = 40% ÷ 2 = 20%"],
+            answer: "G 占全部碱基的 20%。",
+            takeaway: "双链 DNA：A=T、G=C，已知一种碱基比例即可推全部；单链不一定，互补两链的 (A+G)/(T+C) 互为倒数。",
+            relatedKpIds: ["g_dna_03"]),
+        ChallengeProblem(
+            id: "ch_base_2", title: "基因有多长，能编几个氨基酸", kind: .gaokao, weapon: .baseCount,
+            topic: "遗传", difficulty: 3,
+            content: "某基因的编码区含 1200 个碱基对，以其中一条链为模板转录。该基因控制合成的一条肽链最多含多少个氨基酸？",
+            trap: "直接用碱基对数除以 3，忘了一个氨基酸由 mRNA 上 3 个碱基（一个密码子）决定。",
+            keyInsight: "中心法则数量关系：基因碱基数∶mRNA 碱基数∶氨基酸数 ≈ 6∶3∶1。",
+            steps: ["1200 个碱基对 = 2400 个碱基",
+                    "转录以一条链为模板 → mRNA 含 1200 个碱基",
+                    "翻译时 3 个碱基决定 1 个氨基酸 → 1200 ÷ 3 = 400 个"],
+            answer: "最多 400 个氨基酸。",
+            takeaway: "6∶3∶1 速算：基因碱基数 ÷ 6 ≈ 氨基酸数；题给'碱基对'要先 ×2 变碱基数，别漏。",
+            relatedKpIds: ["g_expr_01"]),
+        ChallengeProblem(
+            id: "ch_cross_1", title: "怎么判断谁显谁隐", kind: .gaokao, weapon: .crossDesign,
+            topic: "遗传", difficulty: 2,
+            content: "豌豆有高茎和矮茎一对相对性状。请设计实验确定哪个是显性性状。",
+            trap: "不用纯合亲本，或只看一代就下结论。",
+            keyInsight: "取纯合高茎与纯合矮茎杂交，F₁ 表现出来的那个性状就是显性。",
+            steps: ["取纯合高茎与纯合矮茎作亲本杂交",
+                    "观察 F₁ 的表现型",
+                    "F₁ 表现的性状即为显性（如 F₁ 全高 → 高茎显性）",
+                    "（也可让某株自交，后代发生性状分离，则该亲本表现的性状为显性）"],
+            answer: "F₁ 所表现的性状为显性性状。",
+            takeaway: "判显隐两招：纯合亲本杂交看 F₁；或自交看后代是否'分离'，出现新性状说明原亲本是显性杂合。",
+            relatedKpIds: ["g_mendel_01"]),
+        ChallengeProblem(
+            id: "ch_cross_2", title: "这株高茎是纯还是杂", kind: .gaokao, weapon: .crossDesign,
+            topic: "遗传", difficulty: 3,
+            content: "一株表现为高茎(D_)的豌豆，如何鉴定它是纯合(DD)还是杂合(Dd)？若研究对象是不能自交的动物，又该怎么办？",
+            trap: "只会测交，不知道植物可优先用更简便的自交；预期结果也常写不全。",
+            keyInsight: "植物优先自交：后代不分离为 DD、出现矮茎(3∶1)为 Dd；动物不能自交则用测交(×dd)。",
+            steps: ["植物：让该高茎豌豆自交",
+                    "若后代全为高茎 → 纯合 DD",
+                    "若后代出现矮茎（高∶矮≈3∶1）→ 杂合 Dd",
+                    "动物不能自交 → 改用测交（与隐性纯合 dd 交配）：后代全显→纯合、出现隐性→杂合"],
+            answer: "自交后代不分离则纯合、分离则杂合；动物则改用测交判断。",
+            takeaway: "鉴定纯合/杂合'能自交就自交、不能则测交'：自交更简便、测交更通用。",
+            relatedKpIds: ["g_mendel_01"]),
+        ChallengeProblem(
+            id: "ch_link_1", title: "四种表现型，却严重偏离 1∶1∶1∶1", kind: .gaokao, weapon: .linkage,
+            topic: "遗传", difficulty: 4,
+            content: "基因型 AaBb 的个体测交，后代出现四种表现型，但比例约为 42%∶42%∶8%∶8%（其中亲本型 AaBb、aabb 居多）。这说明两对基因的位置关系如何？",
+            trap: "看到四种表现型就判自由组合，忽略比例严重偏离 1∶1∶1∶1。",
+            keyInsight: "亲本型(多)与重组型(少)分明、偏离 1∶1∶1∶1 → 两对基因连锁在同一对同源染色体上。",
+            steps: ["自由组合测交应得 1∶1∶1∶1，本题严重偏离",
+                    "多数(42%+42%)为亲本型、少数(8%+8%)为重组型",
+                    "说明 A、B 基因连锁在同一对同源染色体上",
+                    "重组型来自减数分裂时同源染色体的交换"],
+            answer: "两对基因连锁（位于同一对同源染色体上），重组型由交换产生。",
+            takeaway: "测交后代'亲本型≫重组型'是连锁的标志；完全连锁则只有亲本型、没有重组型。",
+            relatedKpIds: ["g_mendel_02"]),
+        ChallengeProblem(
+            id: "ch_link_2", title: "用重组率算遗传图距", kind: .olympiad, weapon: .linkage,
+            topic: "遗传", difficulty: 5,
+            content: "某双杂合个体测交，共得后代 1000 个，其中重组型个体共 100 个。求这两对基因之间的重组率，并说明它与遗传图距的关系。",
+            trap: "把重组率算成重组型占某一类的比例，或只数了一种重组型、漏掉另一种。",
+            keyInsight: "重组率 = 重组型总数 ÷ 后代总数 × 100%（两种重组型都计入）；其数值≈图距(cM)。",
+            steps: ["重组型共 100 个，后代总数 1000 个",
+                    "重组率 = 100 ÷ 1000 × 100% = 10%",
+                    "重组率约等于遗传图距 → 两基因相距约 10 厘摩(cM)"],
+            answer: "重组率为 10%，两基因相距约 10 cM。",
+            takeaway: "重组率=重组型÷总数×100%，数值≈图距(cM)；用多对基因的重组率即可给基因排序、定位。",
+            relatedKpIds: ["g_mendel_02"]),
+    ]
+
+    // MARK: 纵深批次 5（收尾：每把武器补到 3 道，含 2 道竞赛）
+    private static let deepBatch5: [ChallengeProblem] = [
+        ChallengeProblem(
+            id: "ch_extreme_3", title: "多条食物链下的最多与最少", kind: .gaokao, weapon: .extremeValue,
+            topic: "生态", difficulty: 4,
+            content: "某食物网中，鹰既可'植物→鼠→鹰'，也可'植物→鼠→蛇→鹰'。若鹰增重 1 kg，最少、最多需消耗植物各多少？（传递效率 10%~20%）",
+            trap: "不会同时变动'食物链长短'和'传递效率'两个极端。",
+            keyInsight: "最少：走最短链 + 用最高效率 20%；最多：走最长链 + 用最低效率 10%。",
+            steps: ["最少：最短链(植物→鼠→鹰)且效率 20% → 1 ÷ 0.2 ÷ 0.2 = 25 kg",
+                    "最多：最长链(植物→鼠→蛇→鹰)且效率 10% → 1 ÷ 0.1 ÷ 0.1 ÷ 0.1 = 1000 kg"],
+            answer: "最少 25 kg，最多 1000 kg。",
+            takeaway: "食物网取极值要双管齐下：消耗最少＝最短链+最高效率，消耗最多＝最长链+最低效率。",
+            relatedKpIds: ["e_eco_05", "e_eco_02"]),
+        ChallengeProblem(
+            id: "ch_hypothesis_3", title: "常显还是伴 X 显", kind: .gaokao, weapon: .hypothesis,
+            topic: "遗传", difficulty: 4,
+            content: "已知某遗传病为显性遗传。如何利用'患病男性的女儿'判断它是常染色体显性还是伴 X 显性遗传？",
+            trap: "停在'显性'，不会用伴 X 显性的传递规律去排除。",
+            keyInsight: "假设伴 X 显性：患病男性 XᴬY 必把 Xᴬ 传给所有女儿 → 女儿应全部患病。",
+            steps: ["假设为伴 X 显性遗传",
+                    "则患病男性(XᴬY)的女儿都会获得 Xᴬ，应全部患病",
+                    "若调查发现某患病男性有表现正常的女儿 → 与假设矛盾 → 排除伴 X 显性",
+                    "结论：该病为常染色体显性遗传"],
+            answer: "若患病男性出现正常女儿，则为常染色体显性；否则不能排除伴 X 显性。",
+            takeaway: "伴 X 显性'传女不传子留显'：父患病→女儿全患病。出现正常女儿即可推翻 X 显性假设。",
+            relatedKpIds: ["g_sex_01"]),
+        ChallengeProblem(
+            id: "ch_hw_3", title: "由显性表现型频率反求基因频率", kind: .olympiad, weapon: .hardyWeinberg,
+            topic: "遗传", difficulty: 4,
+            content: "某遗传平衡群体中，能尝出苦味（显性 T）的人占 84%。求显性基因 T 的频率。",
+            trap: "直接把 84% 当作 p² 或当作基因频率，漏掉先从隐性纯合入手。",
+            keyInsight: "先用隐性纯合：不能尝苦味 tt = q² = 1 − 84%，开方得 q，再求 p。",
+            steps: ["不能尝苦味 tt = q² = 1 − 0.84 = 0.16",
+                    "q = √0.16 = 0.4",
+                    "p = 1 − q = 0.6"],
+            answer: "显性基因 T 的频率为 0.6。",
+            takeaway: "遗传平衡反求频率：先抓隐性纯合 q²（最易确定），开方得 q，再得 p——别从显性表现型直接下手。",
+            relatedKpIds: ["g_evo_02", "g_freq_genotype"]),
+        ChallengeProblem(
+            id: "ch_prob_3", title: "正常孩子是携带者的概率", kind: .gaokao, weapon: .probability,
+            topic: "遗传", difficulty: 3,
+            content: "一对均为 Aa 的夫妇（常染色体隐性病，aa 患病）生了一个表现正常的孩子。这个正常孩子是杂合子(Aa)的概率是多少？",
+            trap: "直接算 Aa=1/2，忽略'已知表现正常'这个限定条件。",
+            keyInsight: "条件概率：在'正常'(AA+Aa=3/4)范围内求 Aa(2/4)所占比例。",
+            steps: ["Aa×Aa 后代：1/4 AA、2/4 Aa、1/4 aa",
+                    "已知表现正常，排除 aa，剩 AA∶Aa = 1∶2",
+                    "正常孩子是 Aa 的概率 = 2 ÷ (1+2) = 2/3"],
+            answer: "2/3。",
+            takeaway: "'已知正常'要用条件概率：在正常个体(AA∶Aa=1∶2)中携带者占 2/3——近亲婚配风险评估常用。",
+            relatedKpIds: ["g_mendel_01"]),
+        ChallengeProblem(
+            id: "ch_gamete_3", title: "一个精母细胞能给几种精子", kind: .gaokao, weapon: .gamete,
+            topic: "遗传", difficulty: 3,
+            content: "基因型为 AaBb（两对基因独立）的雄性个体，一个初级精母细胞经减数分裂能产生几种精子？整个个体（许多精原细胞）又能产生几种？",
+            trap: "把'一个细胞'和'一个个体'混为一谈，都答 4 种。",
+            keyInsight: "一个初级精母细胞同源染色体只有一种排列方式 → 只产生 2 种（4 个精子两两相同）；个体汇总有 4 种。",
+            steps: ["一个初级精母细胞减数分裂得 4 个精子，但因同源染色体排列方式唯一，只有 2 种类型",
+                    "如该细胞产生 AB 和 ab，或产生 Ab 和 aB（取决于排列）",
+                    "整个个体有大量精母细胞、两种排列都出现 → 共 4 种精子：AB、Ab、aB、ab"],
+            answer: "一个初级精母细胞产生 2 种精子；整个个体产生 4 种。",
+            takeaway: "配子种类'一个细胞看排列、整个个体看可能'：一个初级精母细胞 2 种，个体 2ⁿ 种。",
+            relatedKpIds: ["g_meiosis_02"]),
+        ChallengeProblem(
+            id: "ch_pedigree_3", title: "两种遗传病同患的概率", kind: .olympiad, weapon: .pedigree,
+            topic: "遗传", difficulty: 5,
+            content: "甲病为常染色体隐性(基因 A/a)、乙病为伴 X 隐性(基因 Xᴮ/Xᵇ)。一对夫妇：女方为 Aa 且 XᴮXᵇ，男方为 Aa 且 XᴮY。求他们生一个'两病兼患'孩子的概率。",
+            trap: "把两病概率简单相加，或忽略乙病患者只能是男孩。",
+            keyInsight: "两病独立，分别算再相乘：患甲 aa=1/4；乙病患者为 XᵇY，占全部孩子的 1/4。",
+            steps: ["甲病：Aa×Aa → 患病 aa = 1/4",
+                    "乙病：XᴮXᵇ×XᴮY → 后代 XᴮXᴮ、XᴮXᵇ、XᴮY、XᵇY 各 1/4，患病者为 XᵇY = 1/4",
+                    "两病独立，兼患 = 1/4 × 1/4 = 1/16"],
+            answer: "两病兼患的概率为 1/16（且必为男孩）。",
+            takeaway: "多病概率'先各算再相乘'；伴 X 隐性患者多为男性，'兼患'里别忘性别限制。",
+            relatedKpIds: ["g_sex_01", "g_mendel_02"]),
+        ChallengeProblem(
+            id: "ch_reverse_3", title: "顶层 1 kg，生产者至少固定多少", kind: .gaokao, weapon: .reverse,
+            topic: "生态", difficulty: 3,
+            content: "食物链 甲(生产者)→乙→丙。若丙（最高营养级）同化了相当于 1 kg 的能量，生产者甲至少需要固定多少能量？（传递效率 10%~20%）",
+            trap: "'至少'用最低效率，正好与'消耗最多'搞反。",
+            keyInsight: "求生产者'至少'固定 → 各级都用最高效率 20% 逆推。",
+            steps: ["丙 ← 乙：1 ÷ 20% = 5",
+                    "乙 ← 甲：5 ÷ 20% = 25",
+                    "即甲至少固定 25 kg（能量）"],
+            answer: "生产者至少需固定相当于 25 kg 的能量。",
+            takeaway: "逆推能量：求源头'至少'用最高效率 20%、'最多'用最低效率 10%——'最少消耗对应最高效率'。",
+            relatedKpIds: ["e_eco_05"]),
+        ChallengeProblem(
+            id: "ch_base_3", title: "复制三次要耗多少游离碱基", kind: .gaokao, weapon: .baseCount,
+            topic: "遗传", difficulty: 4,
+            content: "某 DNA 分子含腺嘌呤(A) 200 个。该 DNA 连续复制 3 次，共需消耗游离的腺嘌呤脱氧核苷酸多少个？",
+            trap: "用 2ⁿ 而不是 (2ⁿ−1)，把'新增链'和'总链'弄混。",
+            keyInsight: "复制 n 次共生成 2ⁿ 个 DNA、新合成链相当于 (2ⁿ−1) 个原 DNA 的量。",
+            steps: ["复制 n 次需游离某碱基 = (2ⁿ − 1) × 该碱基在 DNA 中的数目",
+                    "= (2³ − 1) × 200",
+                    "= 7 × 200 = 1400 个"],
+            answer: "共需 1400 个游离的腺嘌呤脱氧核苷酸。",
+            takeaway: "复制消耗用 (2ⁿ−1)×数目（半保留，原链保留不算）；'第 n 次单独消耗'则用 2ⁿ⁻¹×数目。",
+            relatedKpIds: ["g_dna_02"]),
+        ChallengeProblem(
+            id: "ch_cross_3", title: "杂交育种育出矮茎红花", kind: .gaokao, weapon: .crossDesign,
+            topic: "遗传", difficulty: 3,
+            content: "现有纯合高茎红花(DDRR)和纯合矮茎白花(ddrr)豌豆（两对基因独立）。请设计方案育出能稳定遗传的矮茎红花新品种。",
+            trap: "F₂ 选出矮茎红花就以为成功，忽略其中含杂合、还会分离。",
+            keyInsight: "杂交→自交→在 F₂ 选目标性状(ddR_)→连续自交、淘汰分离株，直到不再分离(ddRR)。",
+            steps: ["DDRR × ddrr → F₁(DdRr)",
+                    "F₁ 自交 → F₂ 出现矮茎红花(ddRR、ddRr)",
+                    "选矮茎红花连续自交，淘汰后代发生性状分离的植株",
+                    "直到后代不再分离，即得纯合矮茎红花(ddRR)"],
+            answer: "经杂交得 F₁，自交得 F₂ 选矮茎红花，再连续自交选育出纯合(ddRR)新品种。",
+            takeaway: "杂交育种'杂交→自交→选优→连续自交至纯'，关键是用'后代不再分离'判定纯合。",
+            relatedKpIds: ["g_breed_01"]),
+        ChallengeProblem(
+            id: "ch_link_3", title: "完全连锁的测交后代", kind: .gaokao, weapon: .linkage,
+            topic: "遗传", difficulty: 4,
+            content: "雄果蝇两对基因完全连锁（减数分裂时不发生交换），基因型记为 (AB/ab)。让其与 aabb 个体测交，后代表现型种类及比例如何？",
+            trap: "误按自由组合写成 4 种 1∶1∶1∶1。",
+            keyInsight: "完全连锁不交换，双杂合只产生两种亲本型配子 AB 和 ab，各 1/2。",
+            steps: ["(AB/ab) 完全连锁 → 只产生 AB、ab 两种配子，各 1/2",
+                    "aabb 只产生 ab 配子",
+                    "后代：AaBb 和 aabb，各占 1/2"],
+            answer: "后代只有 2 种表现型（双显、双隐），比例 1∶1。",
+            takeaway: "完全连锁＝只有亲本型配子：测交后代 2 种 1∶1；雄果蝇、雌蚕减数分裂不发生交换是经典考点。",
+            relatedKpIds: ["g_mendel_02"]),
     ]
 
     static func problem(id: String) -> ChallengeProblem? { all.first { $0.id == id } }
+
+    /// 免费试看样本（钩子策略：广度免费、纵深付费）。
+    /// 每把武器放出 1 道最易的高考例题（难度≤4），展示 15 种解题武器的广度；
+    /// 各武器的进阶/压轴 drill、全部竞赛题、全部难度 5 一律锁定，作为升级动机。
+    static let freeSampleIds: Set<String> = {
+        var byWeapon: [BioWeapon: ChallengeProblem] = [:]
+        for p in all where p.kind == .gaokao && p.difficulty <= 4 {
+            if let cur = byWeapon[p.weapon] {
+                if p.difficulty < cur.difficulty { byWeapon[p.weapon] = p }
+            } else {
+                byWeapon[p.weapon] = p
+            }
+        }
+        return Set(byWeapon.values.map(\.id))
+    }()
 }

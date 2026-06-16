@@ -11,11 +11,12 @@ enum QuestionData {
         protein, nucleicAcid, membrane, organelle, transport, enzyme, atp, anaerobic,
         mitosis, secretory, photoFactors, sexLinked, dnaStructure, variation, evolution,
         internalEnv, nerve, immune, population, energyFlow, carbonCycle, stability, geneEng,
-        cellJunior, circulation,
+        cellJunior, circulation, juniorCore,
         nerveSynapse, materialCycle, geneticsMore, homeostasisMore, ecologyMore, biotechMore,
         geneticsFill, homeostasisFill, ecologyFill, biotechFill,
         geneticsDense, homeostasisDense, ecologyDense, biotechDense,
         geneticsDense2, homeostasisDense2, homeostasisDense3, ecologyDense2, biotechDense2,
+        biotechExpand, cellNucleus,
     ].flatMap { $0 }
 
     static func questions(for kpId: String) -> [Question] { all.filter { $0.kpId == kpId } }
@@ -522,6 +523,76 @@ enum QuestionData {
     ]
 
     // 初中：血液循环
+    // 初中高频考点补题：生态系统/食物链/细胞结构/呼吸/消化/反射
+    private static let juniorCore: [Question] = [
+        // 生态系统的组成
+        Question(id: "q_jeco_c1", kpId: "j_bio_03", type: .choice,
+                 stem: "下列生物中，属于生态系统中分解者的是？",
+                 explanation: "分解者是营腐生生活的细菌和真菌，把动植物遗体中的有机物分解成无机物归还无机环境；绿色植物是生产者，动物是消费者。",
+                 options: ["腐生的细菌和真菌", "绿色植物", "食草的兔", "阳光和空气"],
+                 answerIndex: 0),
+        Question(id: "q_jeco_s1", kpId: "j_bio_03", type: .shortAnswer,
+                 stem: "如果一个生态系统中的分解者全部消失，会出现什么后果？请简要说明。",
+                 explanation: "考查分解者在物质循环中的作用。",
+                 modelAnswer: "动植物的遗体、粪便中的有机物不能被分解成无机物归还无机环境，会大量堆积；生产者得不到所需的无机物（如 CO₂、无机盐），物质循环受阻，生态系统将遭到破坏。",
+                 scorePoints: ["遗体粪便中的有机物无法分解、堆积", "无机物不能归还无机环境", "物质循环受阻、生态系统被破坏"]),
+        // 食物链与食物网
+        Question(id: "q_jfood_c1", kpId: "j_bio_04", type: .choice,
+                 stem: "在食物链「草→兔→狐」中，如果环境受到难以分解的农药污染，体内农药积累最多的是？",
+                 explanation: "有毒物质沿食物链逐级积累放大（生物富集），营养级越高积累越多，故狐体内最多。",
+                 options: ["狐", "兔", "草", "三者一样多"],
+                 answerIndex: 0),
+        Question(id: "q_jfood_c2", kpId: "j_bio_04", type: .choice,
+                 stem: "关于食物链「草→食草昆虫→蛙→蛇」的叙述，正确的是？",
+                 explanation: "食物链起点是生产者（草），箭头指向取食者，不包括分解者和非生物部分；蛇营养级最高、所含能量最少。",
+                 options: ["箭头指向取食者，草是生产者", "应把分解者也写进食物链", "蛇所含能量最多", "食物链可以从昆虫开始写"],
+                 answerIndex: 0),
+        // 细胞的基本结构
+        Question(id: "q_jcell_c1", kpId: "j_cell_02", type: .choice,
+                 stem: "与动物细胞相比，植物细胞特有的结构是？",
+                 explanation: "植物细胞特有细胞壁、液泡和叶绿体；细胞膜、细胞质、细胞核是动植物细胞共有的。",
+                 options: ["细胞壁、液泡、叶绿体", "细胞膜、细胞质", "细胞核", "线粒体"],
+                 answerIndex: 0),
+        Question(id: "q_jcell_c2", kpId: "j_cell_02", type: .choice,
+                 stem: "能控制物质进出、像门卫一样的细胞结构是？",
+                 explanation: "细胞膜能控制物质进出细胞；细胞壁起保护支持作用，细胞核是控制中心，液泡含细胞液。",
+                 options: ["细胞膜", "细胞壁", "细胞核", "液泡"],
+                 answerIndex: 0),
+        // 呼吸作用
+        Question(id: "q_jresp_c1", kpId: "j_plant_02", type: .choice,
+                 stem: "农业生产上经常给农作物的土壤松土，主要目的是？",
+                 explanation: "松土使土壤通气良好，增加氧气供应，促进根细胞的呼吸作用，有利于根吸收水和无机盐。",
+                 options: ["增加土壤空气、促进根的呼吸作用", "增强光合作用", "减少蒸腾作用", "促进蒸腾作用"],
+                 answerIndex: 0),
+        Question(id: "q_jresp_s1", kpId: "j_plant_02", type: .shortAnswer,
+                 stem: "储存水果、蔬菜时常采用低温、适当降低氧气浓度的方法，请解释其原理。",
+                 explanation: "考查呼吸作用与储存的关系。",
+                 modelAnswer: "低温能降低与呼吸作用有关酶的活性，适当降低氧气浓度能减弱有氧呼吸，从而减弱呼吸作用、减少有机物的消耗，使果蔬保存得更久（但氧浓度不能过低，以免进行无氧呼吸产生酒精使其变质）。",
+                 scorePoints: ["低温降低酶活性、减弱呼吸", "低氧抑制有氧呼吸", "减少有机物消耗、延长保存", "氧不能过低（防无氧呼吸/酒精）"]),
+        // 食物的消化与吸收
+        Question(id: "q_jdig_c1", kpId: "j_human_01", type: .choice,
+                 stem: "人体消化和吸收营养物质的主要场所是？",
+                 explanation: "小肠长、内有小肠绒毛、内表面积大、含多种消化液，是消化和吸收的主要场所。",
+                 options: ["小肠", "胃", "口腔", "大肠"],
+                 answerIndex: 0),
+        Question(id: "q_jdig_c2", kpId: "j_human_01", type: .choice,
+                 stem: "淀粉在消化道中开始被消化的部位是？",
+                 explanation: "淀粉在口腔被唾液淀粉酶初步消化为麦芽糖；蛋白质在胃开始消化，脂肪在小肠被消化。",
+                 options: ["口腔", "胃", "小肠", "食道"],
+                 answerIndex: 0),
+        // 神经调节与反射
+        Question(id: "q_jnerve_c1", kpId: "j_human_04", type: .choice,
+                 stem: "完成反射活动的结构基础是？",
+                 explanation: "反射的结构基础是反射弧，由感受器、传入神经、神经中枢、传出神经、效应器五部分组成，缺一不可。",
+                 options: ["反射弧", "神经元", "大脑", "脊髓"],
+                 answerIndex: 0),
+        Question(id: "q_jnerve_c2", kpId: "j_human_04", type: .choice,
+                 stem: "手偶然碰到火立即缩回，这一缩手反射的神经中枢位于？",
+                 explanation: "缩手反射属于非条件反射，其神经中枢在脊髓，可在大脑感觉到疼之前先完成缩手动作。",
+                 options: ["脊髓", "大脑皮层", "小脑", "脑干"],
+                 answerIndex: 0),
+    ]
+
     private static let circulation: [Question] = [
         Question(id: "q_circ_c1", kpId: "j_human_02", type: .choice,
                  stem: "关于人体血液循环的叙述，正确的是？",
@@ -1279,5 +1350,53 @@ enum QuestionData {
                  explanation: "转基因生物安全性主要涉及食物安全、生物安全和环境安全三方面。",
                  options: ["运输安全", "食物安全、生物安全和环境安全", "审美问题", "经济成本"],
                  answerIndex: 1),
+    ]
+
+    // 选必3 扩充：选择/鉴别培养基、蛋白质工程、发酵工程应用
+    private static let biotechExpand: [Question] = [
+        Question(id: "q_bsel_c1", kpId: "b_microbe_select", type: .choice,
+                 stem: "要从土壤中筛选出能分解尿素的细菌，应选用的培养基是？",
+                 explanation: "以尿素作为唯一氮源的选择培养基，只有能合成脲酶、分解尿素获得氮源的细菌才能生长，其他微生物被淘汰。",
+                 options: ["以尿素为唯一氮源的培养基", "含多种氮源的普通培养基", "无碳源的培养基", "加入大量葡萄糖的培养基"],
+                 answerIndex: 0),
+        Question(id: "q_bsel_c2", kpId: "b_microbe_select", type: .choice,
+                 stem: "在筛选纤维素分解菌时，培养基中加入刚果红的作用是？",
+                 explanation: "刚果红能与纤维素形成红色复合物，纤维素被分解后红色消失，因此能分解纤维素的菌落周围会出现透明圈，便于鉴别。",
+                 options: ["使纤维素分解菌周围出现透明圈，便于鉴别", "为微生物提供氮源", "杀灭杂菌", "调节培养基 pH"],
+                 answerIndex: 0),
+        Question(id: "q_bsel_s1", kpId: "b_microbe_select", type: .shortAnswer,
+                 stem: "选择培养基和鉴别培养基在原理和目的上有何不同？",
+                 explanation: "考查两类培养基的本质区别。",
+                 modelAnswer: "选择培养基通过加入特定成分（如唯一氮源、抗生素）使目标微生物生长、抑制或淘汰其他微生物，目的是'筛选/富集'目标菌；鉴别培养基根据微生物的代谢差异加入指示剂或化学物质，使特定菌落呈现特定颜色（或透明圈），目的是'区分/鉴别'不同菌种，并不淘汰杂菌。",
+                 scorePoints: ["选择培养基靠特定成分淘汰杂菌、富集目标菌", "鉴别培养基靠显色/透明圈区分菌种", "前者重'筛选'、后者重'鉴别'"]),
+        Question(id: "q_bprot_c1", kpId: "b_protein_eng", type: .choice,
+                 stem: "关于蛋白质工程，下列说法正确的是？",
+                 explanation: "蛋白质工程从预期功能出发反推到基因序列，仍通过改造基因实现，可获得自然界不存在的蛋白质，被称为第二代基因工程。",
+                 options: ["从预期蛋白功能反推、最终仍要改造基因", "不需要基因、直接合成蛋白质", "只能生产天然存在的蛋白质", "与基因的碱基序列无关"],
+                 answerIndex: 0),
+        Question(id: "q_bfapp_c1", kpId: "b_ferment_app", type: .choice,
+                 stem: "现代发酵工程生产中，发酵罐需要严格控制的条件不包括？",
+                 explanation: "发酵罐需控制温度、pH、溶氧和营养，并防止杂菌污染；'光照强度'通常不是发酵罐控制的关键条件（多数发酵微生物为异养、不依赖光）。",
+                 options: ["光照强度", "温度", "pH", "溶氧量"],
+                 answerIndex: 0),
+    ]
+
+    // 必修1 补题：细胞核
+    private static let cellNucleus: [Question] = [
+        Question(id: "q_nucleus_c1", kpId: "m1_cell_03", type: .choice,
+                 stem: "关于细胞核的叙述，正确的是？",
+                 explanation: "核膜是双层膜、上有核孔，是 mRNA、蛋白质等大分子进出细胞核的通道；核仁与某种 RNA 合成和核糖体形成有关；染色质与染色体是同一物质在不同时期的两种形态。",
+                 options: ["核孔是 mRNA、蛋白质等大分子进出细胞核的通道", "核膜是单层膜", "核仁中含有遗传物质 DNA 是主要成分", "染色质和染色体是两种不同的物质"],
+                 answerIndex: 0),
+        Question(id: "q_nucleus_c2", kpId: "m1_cell_03", type: .choice,
+                 stem: "伞藻嫁接实验和变形虫去核实验共同说明？",
+                 explanation: "这两个经典实验都说明细胞核是细胞代谢和遗传的控制中心，是遗传信息库。",
+                 options: ["细胞核是细胞代谢和遗传的控制中心", "细胞质决定生物性状", "核膜控制物质进出", "细胞核能直接合成蛋白质"],
+                 answerIndex: 0),
+        Question(id: "q_nucleus_s1", kpId: "m1_cell_03", type: .shortAnswer,
+                 stem: "为什么说细胞核是细胞代谢和遗传的控制中心？请结合结构与实验简要说明。",
+                 explanation: "考查细胞核功能与证据。",
+                 modelAnswer: "细胞核内的染色质由 DNA 和蛋白质组成，DNA 上的遗传信息控制蛋白质（酶）的合成，从而控制细胞代谢和遗传；伞藻嫁接实验、变形虫去核与核移植实验都证明，细胞的形态、代谢和遗传由细胞核控制，故细胞核是遗传信息库和控制中心。",
+                 scorePoints: ["核内染色质含 DNA，储存遗传信息", "通过控制蛋白质（酶）合成控制代谢和遗传", "伞藻/变形虫等实验证明核是控制中心"]),
     ]
 }
