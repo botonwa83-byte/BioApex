@@ -12,8 +12,9 @@ struct PromoView: View {
         ("play.square.stack.fill", .bioTeal, "过程剧场", "光合/呼吸/分裂/转录翻译——拖时间轴看清每一步,断点填空"),
         ("chart.bar.doc.horizontal.fill", .bioGreen, "考点全图谱", "覆盖初高中全部考点,覆盖率拉满=拿下高考每个分数点"),
         ("magnifyingglass", .bioPurple, "遗传神探", "系谱破案+概率秒算,把遗传压轴做成游戏"),
+        ("scope", .bioGold, "解题武器库 + 破题之眼", "25 把解题武器,高考压轴/竞赛一招巧解,识局即破"),
         ("arrow.triangle.2.circlepath", .bioBlue, "稳态回路", "拨动血糖/体温,看负反馈如何回拉——系统思维"),
-        ("brain.head.profile", .bioGold, "易混辨析+智能复习", "有丝vs减数等易混点专项,艾宾浩斯间隔复习"),
+        ("brain.head.profile", .bioGreen, "易混辨析+智能复习", "有丝vs减数等易混点专项,艾宾浩斯间隔复习"),
     ]
 
     private var bg: some View {
@@ -77,7 +78,7 @@ struct PromoView: View {
                         statDivider
                         stat("\(ProcessData.all.count)", "过程剧场")
                         statDivider
-                        stat("6", "教材模块")
+                        stat("\(BioWeapon.allCases.count)", "解题武器")
                     }
                     .padding(.vertical, 18).padding(.horizontal, 24)
                     .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.05)))
